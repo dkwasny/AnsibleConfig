@@ -1,0 +1,9 @@
+---
+- name: Setup journald config
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=journald.conf
+    dest=/etc/systemd/journald.conf
+  notify: restart journald

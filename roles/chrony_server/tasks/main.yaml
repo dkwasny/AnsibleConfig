@@ -6,4 +6,4 @@
     mode=644
     src=chrony.conf
     dest=/etc/chrony.conf
-  notify: Restart Chrony
+  notify: restart chrony

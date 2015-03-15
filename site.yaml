@@ -2,9 +2,11 @@
 - hosts: vm_grid_all
   remote_user: root
   roles:
-    - base
+    - hosts_file
+    - base_packages
     - java
     - firewalld
+    - journald
 
 - hosts: time_server
   remote_user: root

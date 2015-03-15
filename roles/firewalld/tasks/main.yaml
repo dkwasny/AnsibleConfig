@@ -6,12 +6,12 @@
     mode=600
     src=firewalld.conf
     dest=/etc/firewalld/firewalld.conf
-  notify: Restart Firewalld
+  notify: restart firewalld
 - name: Delete public zone
   file:
     path=/etc/firewalld/zones/public.xml
     state=absent
-  notify: Restart Firewalld
+  notify: restart firewalld
 - name: Setup local zone
   copy:
     owner=root
@@ -19,4 +19,4 @@
     mode=644
     src=local.xml
     dest=/etc/firewalld/zones/local.xml
-  notify: Restart Firewalld
+  notify: restart firewalld
