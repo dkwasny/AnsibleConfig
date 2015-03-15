@@ -1,13 +1,5 @@
 ---
-- name: Remove NTP
-  yum:
-    name=ntp
-    state=absent
-- name: Install Chrony
-  yum:
-    name=chrony
-    state=present
-- name: Setup chrony.conf
+- name: Setup client chrony.conf
   template:
     owner=root
     group=root
