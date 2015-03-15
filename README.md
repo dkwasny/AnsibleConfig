@@ -50,8 +50,8 @@ VM Configuration
 1. Update all packages
 	* yum -y install deltarpm; yum -y update;
 1. Use ssh-copy-id to add your ssh key to the root user on all VMs
-	* There are safer ways to do this, but I don't care when dealing with toy VMs.
 	* ssh-copy-id root@[vm-ip-address]
+	* There are safer ways to do this, but I don't care when dealing with toy VMs.
 
 Ansible Setup
 -------------
