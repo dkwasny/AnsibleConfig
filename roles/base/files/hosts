@@ -1,0 +1,6 @@
+127.0.0.1		localhost.localdomain localhost
+::1		localhost6.localdomain6 localhost6
+192.168.122.11	vm-grid-1
+192.168.122.12	vm-grid-2
+192.168.122.13	vm-grid-3
+192.168.122.14	vm-grid-4
