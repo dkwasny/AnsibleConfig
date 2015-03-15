@@ -13,7 +13,7 @@ VM Naming Scheme
 ----------------
 vm-grid-(number)
 
-You can really use whatever you want, but some files (/etc/hosts and /etc/ansible/hosts) may use these names.
+The /etc/hosts and ansible hosts files will need to be changed if you want to use a different naming scheme.
 
 Network Setup (libvirt)
 -----------------------
