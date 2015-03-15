@@ -36,7 +36,7 @@ Network Setup (VirtualBox)
 
 VM Creation (libvirt)
 ---------------------
-sudo virt-install --connect=qemu:///system -n <name> -r <memory-in-MB> --vcpus=<num-of-cores> --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/<name>,size=<side-of-storage-in-GB> -w network=static --graphics vnc
+sudo virt-install --connect=qemu:///system -n (name) -r (memory-in-MB) --vcpus=(num-of-cores) --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/(name),size=(side-of-storage-in-GB) -w network=static --graphics vnc
 
 VM Configuration
 ------------------------
