@@ -36,7 +36,7 @@ Network Setup (VirtualBox)
 
 VM Creation (libvirt)
 ---------------------
-sudo virt-install --connect=qemu:///system -n (name) -r (memory-in-MB) --vcpus=(num-of-cores) --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/(name),size=(size-of-storage-in-GB) -w network=static --graphics vnc
+sudo virt-install --connect=qemu:///system -n [name] -r [memory-in-MB] --vcpus=[num-of-cores] --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/[name],size=[size-of-storage-in-GB] -w network=static --graphics vnc
 
 VM Configuration
 ------------------------
@@ -51,6 +51,7 @@ VM Configuration
 	* yum -y install deltarpm; yum -y update;
 1. Use ssh-copy-id to add your ssh key to the root user on all VMs
 	* There are safer ways to do this, but I don't care when dealing with toy VMs.
+	* ssh-copy-id root@[vm-ip-address]
 
 Ansible Setup
 -------------
