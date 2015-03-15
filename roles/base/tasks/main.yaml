@@ -1,0 +1,20 @@
+---
+- name: Install base packages
+  yum:
+    name={{item}}
+    state=present
+  with_items:
+    - vim-enhanced
+    - wget
+    - git
+    - nmap-ncat
+    - epel-release
+    - htop
+    - tmux
+- name: Setup the /etc/hosts file
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=hosts
+    dest=/etc/hosts

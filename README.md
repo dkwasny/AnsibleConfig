@@ -13,7 +13,7 @@ VM Naming Scheme
 ----------------
 vm-grid-(number)
 
-You can really use whatever you want, but some files (/etc/hosts) may use these names explicitly.
+You can really use whatever you want, but some files (/etc/hosts and /etc/ansible/hosts) may use these names.
 
 Network Setup (libvirt)
 -----------------------
@@ -38,7 +38,7 @@ VM Creation (libvirt)
 ---------------------
 sudo virt-install --connect=qemu:///system -n <name> -r <memory-in-MB> --vcpus=<num-of-cores> --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/<name>,size=<side-of-storage-in-GB> -w network=static --graphics vnc
 
-VM Network Configuration
+VM Configuration
 ------------------------
 1. Change /etc/sysconfig/network-scripts/ifcfg-eth*
 	* Set BOOTPROTO=none
@@ -47,3 +47,11 @@ VM Network Configuration
 	* Add NETMASK=255.255.255.0
 	* Add GATEWAY=192.168.122.1 (needed for libvirt)
 	* Add DNS1=192.168.122.1 (needed for libvirt)
+1. Update all packages
+	* yum -y install deltarpm; yum -y update;
+1. Use ssh-copy-id to add your ssh key to the root user on all VMs
+	* There are safer ways to do this, but I don't care when dealing with toy VMs.
+
+Ansible Setup
+-------------
+1. Replace the default /etc/ansible/hosts file with a symlink to ./ansible-config/hosts

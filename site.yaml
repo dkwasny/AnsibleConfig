@@ -1,0 +1,5 @@
+---
+- hosts: vm-grid-all
+  remote_user: root
+  roles:
+    - base
