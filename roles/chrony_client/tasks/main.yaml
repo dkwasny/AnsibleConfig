@@ -1,0 +1,17 @@
+---
+- name: Remove NTP
+  yum:
+    name=ntp
+    state=absent
+- name: Install Chrony
+  yum:
+    name=chrony
+    state=present
+- name: Setup chrony.conf
+  template:
+    owner=root
+    group=root
+    mode=644
+    src=chrony.conf.j2
+    dest=/etc/chrony.conf
+  notify: Restart Chrony

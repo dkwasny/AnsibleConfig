@@ -1,2 +1,8 @@
-[vm-grid-all]
+[vm_grid_all]
 vm-grid-[1:2]
+
+[time_server]
+vm-grid-1
+
+[time_client]
+vm-grid-2

@@ -1,0 +1,22 @@
+---
+- name: Setup base firewalld.conf file
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=firewalld.conf
+    dest=/etc/firewalld/firewalld.conf
+  notify: Restart Firewalld
+- name: Delete public zone
+  file:
+    path=/etc/firewalld/zones/public.xml
+    state=absent
+  notify: Restart Firewalld
+- name: Setup local zone
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=local.xml
+    dest=/etc/firewalld/zones/local.xml
+  notify: Restart Firewalld

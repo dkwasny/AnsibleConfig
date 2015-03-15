@@ -1,5 +1,17 @@
 ---
-- hosts: vm-grid-all
+- hosts: vm_grid_all
   remote_user: root
   roles:
     - base
+    - java
+    - firewalld
+
+- hosts: time_server
+  remote_user: root
+  roles:
+    - chrony_server
+
+- hosts: time_client
+  remote_user: root
+  roles:
+    - chrony_client
