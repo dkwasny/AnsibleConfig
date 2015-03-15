@@ -40,7 +40,7 @@ sudo virt-install --connect=qemu:///system -n <name> -r <memory-in-MB> --vcpus=<
 
 VM Configuration
 ------------------------
-1. Change /etc/sysconfig/network-scripts/ifcfg-eth*
+1. Change /etc/sysconfig/network-scripts/ifcfg-eth0
 	* Set BOOTPROTO=none
 	* Set ONBOOT=yes
 	* Add IPADDR=192.168.122.1[number-of-vm]
