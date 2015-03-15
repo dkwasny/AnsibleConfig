@@ -41,9 +41,9 @@ sudo virt-install --connect=qemu:///system -n <name> -r <memory-in-MB> --vcpus=<
 VM Network Configuration
 ------------------------
 1. Change /etc/sysconfig/network-scripts/ifcfg-eth*
-	1. Set BOOTPROTO=none
-	1. Set ONBOOT=yes
-	1. Add IPADDR=192.168.122.1[number-of-vm]
-	1. Add NETMASK=255.255.255.0
-	1. Add GATEWAY=192.168.122.1 (needed for libvirt)
-	1. Add DNS1=192.168.122.1 (needed for libvirt)
+	* Set BOOTPROTO=none
+	* Set ONBOOT=yes
+	* Add IPADDR=192.168.122.1[number-of-vm]
+	* Add NETMASK=255.255.255.0
+	* Add GATEWAY=192.168.122.1 (needed for libvirt)
+	* Add DNS1=192.168.122.1 (needed for libvirt)
