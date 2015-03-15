@@ -1,0 +1,54 @@
+---
+- name: Copy Hadoop RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=hadoop-2.5.1-1.el7.centos.x86_64.rpm
+    dest=/tmp/hadoop-2.5.1-1.el7.centos.x86_64.rpm
+- name: Install Hadoop
+  yum:
+    name=/tmp/hadoop-2.5.1-1.el7.centos.x86_64.rpm
+    state=present
+- name: Setup static Hadoop config files
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=config/
+    dest=/usr/local/etc/hadoop
+- name: Setup templated Hadoop config files
+  template:
+    owner=root
+    group=root
+    mode=644
+    src={{ item }}.j2
+    dest=/usr/local/etc/hadoop/{{ item }}
+  with_items:
+    - core-site.xml
+    - hdfs-site.xml
+    - slaves
+    - yarn-site.xml
+- name: Setup HDFS folders
+  file:
+    name={{ item }}
+    owner=hdfs
+    group=hdfs
+    mode=700
+    state=directory
+  with_items:
+    - /var/local/hdfs
+    - /var/local/hdfs/name
+    - /var/local/hdfs/data
+    - /var/log/hdfs
+- name: Setup YARN folders
+  file:
+    name={{ item }}
+    owner=yarn
+    group=yarn
+    mode=700
+    state=directory
+  with_items:
+    - /var/local/yarn
+    - /var/local/yarn/nm-local-dir
+    - /var/log/yarn

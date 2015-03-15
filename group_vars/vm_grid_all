@@ -1,0 +1,17 @@
+# TODO: Use some anchor tricks like in the puppet code to prevent duplication.
+---
+namenode: vm-grid-1
+datanodes: 
+  - vm-grid-1
+  - vm-grid-2
+time_server: vm-grid-1
+zookeeper_quorum:
+  - vm-grid-1
+  - vm-grid-2
+master: vm-grid-1
+regionservers:
+  - vm-grid-1
+  - vm-grid-2
+solr_nodes:
+  - vm-grid-1
+  - vm-grid-2

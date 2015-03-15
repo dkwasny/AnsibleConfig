@@ -1,0 +1,6 @@
+#!/bin/bash
+
+{% for solr_node in solr_nodes %}
+	echo "Starting solr {{ solr_node }}";
+	ssh -t {{ solr_node }} "sudo systemctl start solr";
+{% endfor %}

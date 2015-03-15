@@ -1,0 +1,10 @@
+#!/bin/bash
+
+{% for datanode in datanodes %}
+	echo "Stopping datanode {{ datanode }}";
+	ssh -t {{ datanode }} "sudo systemctl stop hdfs-datanode";
+{% endfor %}
+echo "Stopping secondarynamenode {{ namenode }}"
+ssh -t {{ namenode }} "sudo systemctl stop hdfs-secondarynamenode";
+echo "Stopping namenode {{ namenode }}"
+ssh -t {{ namenode }} "sudo systemctl stop hdfs-namenode";

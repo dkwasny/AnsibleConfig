@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Starting namenode {{ namenode }}"
+ssh -t {{ namenode }} "sudo systemctl start hdfs-namenode";
+echo "Starting secondarynamenode {{ namenode }}"
+ssh -t {{ namenode }} "sudo systemctl start hdfs-secondarynamenode";
+{% for datanode in datanodes %}
+	echo "Starting datanode {{ datanode }}";
+	ssh -t {{ datanode }} "sudo systemctl start hdfs-datanode";
+{% endfor %}

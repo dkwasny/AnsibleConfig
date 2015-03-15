@@ -7,6 +7,7 @@
     - java
     - firewalld
     - journald
+    - admin_user
 
 - hosts: time_server
   remote_user: root
@@ -17,3 +18,8 @@
   remote_user: root
   roles:
     - chrony_client
+
+- hosts: hadoop
+  remote_user: root
+  roles:
+    - hadoop
