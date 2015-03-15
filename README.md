@@ -11,7 +11,7 @@ To make life easier, all VMs will open up all 192.168.122.0/24 traffic.
 
 VM Naming Scheme
 ----------------
-vm-grid-<number>
+vm-grid-(number)
 
 You can really use whatever you want, but some files (/etc/hosts) may use these names explicitly.
 
