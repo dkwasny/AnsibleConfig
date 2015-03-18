@@ -4,14 +4,21 @@ namenode: vm-grid-1
 datanodes: 
   - vm-grid-1
   - vm-grid-2
+  - vm-grid-3
+  - vm-grid-4
 time_server: vm-grid-1
 zookeeper_quorum:
-  - vm-grid-1
   - vm-grid-2
+  - vm-grid-3
+  - vm-grid-4
 hbase_master: vm-grid-1
 regionservers:
   - vm-grid-1
   - vm-grid-2
+  - vm-grid-3
+  - vm-grid-4
 solr_nodes:
   - vm-grid-1
   - vm-grid-2
+  - vm-grid-3
+  - vm-grid-4
