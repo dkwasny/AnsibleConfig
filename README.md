@@ -50,6 +50,8 @@ VM Configuration
 	* Add NETMASK=255.255.255.0
 	* Add GATEWAY=192.168.122.1 (needed for libvirt)
 	* Add DNS1=192.168.122.1 (needed for libvirt)
+1. Restart the network
+	* systemctl restart network
 1. Update all packages
 	* yum -y install deltarpm; yum -y update;
 1. Use ssh-copy-id to add your ssh key to the root user on all VMs
