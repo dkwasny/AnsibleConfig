@@ -61,6 +61,10 @@ Ansible Setup
 1. Install Ansible using your favorite method
 1. Replace the default /etc/ansible/hosts file with a symlink to ./ansible-config/hosts
 
+Run Ansible
+-----------
+ansible-playbook site.yaml
+
 Daemons
 -----------
 To operate on a daemon, execute **sudo systemctl \<start|stop|status\> \<DAEMON_NAME\>**.
