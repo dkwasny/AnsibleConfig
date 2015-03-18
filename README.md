@@ -55,6 +55,7 @@ VM Configuration
 
 Ansible Setup
 -------------
+1. Install Ansible using your favorite method
 1. Replace the default /etc/ansible/hosts file with a symlink to ./ansible-config/hosts
 
 Daemons
