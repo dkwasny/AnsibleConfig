@@ -12,8 +12,8 @@ To make life easier, all VMs will open up all 192.168.122.0/24 traffic.
 VM Naming Scheme
 ----------------
 vm-grid-(number)
-
-The /etc/hosts and ansible hosts files will need to be changed if you want to use a different naming scheme.
+<br /><br />
+If you want to change VM names or use a different number of VMs, then you will need to modify your /etc/hosts, ./roles/hosts_file/files/hosts, ./ansible_config/hosts and ./group_vars/vm-grid-all appropriately.
 
 Network Setup
 -------------
