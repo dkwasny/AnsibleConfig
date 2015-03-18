@@ -9,11 +9,18 @@ Ansible's use of SSH instead of a custom daemon also simplifies VM setup.
 Like [PuppetConfig](https://github.com/dkwasny/PuppetConfig), this repo is inteded to target RHEL/Centos 7 guest VMs.
 To make life easier, all VMs will open up all 192.168.122.0/24 traffic.
 
+If you want to change VM names or use a different number of VMs, then you will need to modify your hosts file, [the VMs hosts file](roles/hosts_file/files/hosts), [Ansible's hosts config file](ansible_config/hosts) and [the group variable file](group_vars/vm_grid_all) appropriately.
+
+If you have a DNS setup, then the [hosts_file role](roles/hosts_file) is unnecessary.
+
 VM Naming Scheme
 ----------------
 vm-grid-(number)
-<br /><br />
-If you want to change VM names or use a different number of VMs, then you will need to modify your /etc/hosts, ./roles/hosts_file/files/hosts, ./ansible_config/hosts and ./group_vars/vm-grid-all appropriately.
+
+Local Hosts File Setup
+----------------------
+Unless you have a DNS setup, you will need to add the VMs to your local hosts file.
+You can use [hosts](roles/hosts_file/files/hosts) as a reference.
 
 Network Setup
 -------------
