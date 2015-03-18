@@ -15,6 +15,11 @@ vm-grid-(number)
 
 The /etc/hosts and ansible hosts files will need to be changed if you want to use a different naming scheme.
 
+Network Setup
+-------------
+* For the sake of consistency, use a local network of 192.168.122.0/24.
+* Ensure the gateway is 192.168.122.1.
+
 Network Setup (libvirt)
 -----------------------
 1. Copy /usr/share/libvirt/networks/default.xml to static.xml.
@@ -30,8 +35,6 @@ Network Setup (libvirt)
 Network Setup (VirtualBox)
 --------------------------
 1. Create a new host-only network that has no DHCP server.
-	* For the sake of consistency, use 192.168.122.0/24.
-	* Ensure the gateway is 192.168.122.1.
 1. Give all new VMs a NAT and host-only network adapter.
 
 VM Creation (libvirt)
