@@ -1,0 +1,12 @@
+---
+- name: Copy Solr RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=solr-4.10.0-1.el7.centos.noarch.rpm
+    dest=/tmp/solr-4.10.0-1.el7.centos.noarch.rpm
+- name: Install Solr
+  yum:
+    name=/tmp/solr-4.10.0-1.el7.centos.noarch.rpm
+    state=present

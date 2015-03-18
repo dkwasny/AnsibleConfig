@@ -1,0 +1,36 @@
+---
+- name: Copy HBase RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=hbase-0.98.6.1-1.el7.centos.x86_64.rpm
+    dest=/tmp/hbase-0.98.6.1-1.el7.centos.x86_64.rpm
+- name: Install HBase
+  yum:
+    name=/tmp/hbase-0.98.6.1-1.el7.centos.x86_64.rpm
+    state=present
+- name: Create /usr/local/etc/hbase
+  file:
+    name=/usr/local/etc/hbase
+    owner=root
+    group=root
+    mode=755
+    state=directory
+- name: Setup template files
+  template:
+    owner=root
+    group=root
+    mode=644
+    src={{ item }}.j2
+    dest=/usr/local/etc/hbase/{{ item }}
+  with_items:
+    - hbase-site.xml
+    - regionservers
+- name: Create log directory
+  file:
+    name=/var/log/hbase
+    owner=hbase
+    group=hbase
+    mode=700
+    state=directory

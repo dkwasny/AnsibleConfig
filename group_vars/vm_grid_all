@@ -8,7 +8,7 @@ time_server: vm-grid-1
 zookeeper_quorum:
   - vm-grid-1
   - vm-grid-2
-master: vm-grid-1
+hbase_master: vm-grid-1
 regionservers:
   - vm-grid-1
   - vm-grid-2

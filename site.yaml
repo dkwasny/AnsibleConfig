@@ -23,3 +23,18 @@
   remote_user: root
   roles:
     - hadoop
+
+- hosts: zookeeper
+  remote_user: root
+  roles:
+    - zookeeper
+
+- hosts: hbase
+  remote_user: root
+  roles:
+    - hbase
+
+- hosts: solr
+  remote_user: root
+  roles:
+    - solr

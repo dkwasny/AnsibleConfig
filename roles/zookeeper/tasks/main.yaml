@@ -1,0 +1,40 @@
+---
+- name: Copy Zookeeper RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=zookeeper-3.4.6-1.el7.centos.noarch.rpm
+    dest=/tmp/zookeeper-3.4.6-1.el7.centos.noarch.rpm
+- name: Install Zookeeper
+  yum:
+    name=/tmp/zookeeper-3.4.6-1.el7.centos.noarch.rpm
+    state=present
+- name: Create /var/local/zookeeper
+  file:
+    name=/var/local/zookeeper
+    owner=zookeeper
+    group=zookeeper
+    mode=700
+    state=directory
+- name: Setup myid
+  template:
+    owner=zookeeper
+    group=zookeeper
+    mode=600
+    src=myid.j2
+    dest=/var/local/zookeeper/myid
+- name: Create /usr/local/etc/zookeeper
+  file:
+    name=/usr/local/etc/zookeeper
+    owner=root
+    group=root
+    mode=755
+    state=directory
+- name: Setup zoo.cfg
+  template:
+    owner=root
+    group=root
+    mode=644
+    src=zoo.cfg.j2
+    dest=/usr/local/etc/zookeeper/zoo.cfg

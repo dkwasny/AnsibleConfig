@@ -4,5 +4,5 @@
 	echo "Stopping regionserver {{ regionserver }}";
 	ssh -t {{ regionserver }} "sudo systemctl stop hbase-regionserver";
 {% endfor %}
-echo "Stopping master {{ master }}"
-ssh -t {{ master }} "sudo systemctl stop hbase-master";
+echo "Stopping master {{ hbase_master }}"
+ssh -t {{ hbase_master }} "sudo systemctl stop hbase-master";

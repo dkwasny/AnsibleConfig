@@ -11,4 +11,11 @@ vm-grid-2
 vm-grid-[1:2]
 
 [zookeeper]
+vm-grid-1 myid=1
+vm-grid-2 myid=2
+
+[hbase]
+vm-grid-[1:2]
+
+[solr]
 vm-grid-[1:2]
