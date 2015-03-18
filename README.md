@@ -54,6 +54,7 @@ VM Configuration
 	* systemctl restart network
 1. Update all packages
 	* yum -y install deltarpm; yum -y update;
+1. Restart the machine to pickup any new kernel updates and whatnot.
 1. Use ssh-copy-id to add your ssh key to the root user on all VMs
 	* ssh-copy-id root@[vm-ip-address]
 	* There are safer ways to do this, but I don't care when dealing with toy VMs.
