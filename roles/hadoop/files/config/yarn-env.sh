@@ -88,7 +88,7 @@ fi
 # so that filenames w/ spaces are handled correctly in loops below
 IFS=
 
-YARN_LOG_DIR="/var/log/yarn"
+YARN_LOG_DIR="/var/opt/yarn/log"
 
 # default log directory & file
 if [ "$YARN_LOG_DIR" = "" ]; then

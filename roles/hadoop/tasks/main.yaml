@@ -4,11 +4,11 @@
     owner=root
     group=root
     mode=600
-    src=hadoop-2.5.1-1.el7.centos.x86_64.rpm
-    dest=/tmp/hadoop-2.5.1-1.el7.centos.x86_64.rpm
+    src=hadoop-2.6.0-1.fc21.x86_64.rpm
+    dest=/tmp/hadoop-2.6.0-1.fc21.x86_64.rpm
 - name: Install Hadoop
   yum:
-    name=/tmp/hadoop-2.5.1-1.el7.centos.x86_64.rpm
+    name=/tmp/hadoop-2.6.0-1.fc21.x86_64.rpm
     state=present
 - name: Setup static Hadoop config files
   copy:
@@ -16,14 +16,14 @@
     group=root
     mode=644
     src=config/
-    dest=/usr/local/etc/hadoop
+    dest=/opt/hadoop/etc/hadoop
 - name: Setup templated Hadoop config files
   template:
     owner=root
     group=root
     mode=644
     src={{ item }}.j2
-    dest=/usr/local/etc/hadoop/{{ item }}
+    dest=/opt/hadoop/etc/hadoop/{{ item }}
   with_items:
     - core-site.xml
     - hdfs-site.xml
@@ -37,10 +37,10 @@
     mode=700
     state=directory
   with_items:
-    - /var/local/hdfs
-    - /var/local/hdfs/name
-    - /var/local/hdfs/data
-    - /var/log/hdfs
+    - /var/opt/hdfs
+    - /var/opt/hdfs/name
+    - /var/opt/hdfs/data
+    - /var/opt/hdfs/log
 - name: Setup YARN folders
   file:
     name={{ item }}
@@ -49,6 +49,6 @@
     mode=700
     state=directory
   with_items:
-    - /var/local/yarn
-    - /var/local/yarn/nm-local-dir
-    - /var/log/yarn
+    - /var/opt/yarn
+    - /var/opt/yarn/nm-local-dir
+    - /var/opt/yarn/log

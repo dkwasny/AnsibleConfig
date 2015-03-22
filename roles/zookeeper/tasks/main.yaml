@@ -4,15 +4,15 @@
     owner=root
     group=root
     mode=600
-    src=zookeeper-3.4.6-1.el7.centos.noarch.rpm
-    dest=/tmp/zookeeper-3.4.6-1.el7.centos.noarch.rpm
+    src=zookeeper-3.4.6-1.fc21.noarch.rpm
+    dest=/tmp/zookeeper-3.4.6-1.fc21.noarch.rpm
 - name: Install Zookeeper
   yum:
-    name=/tmp/zookeeper-3.4.6-1.el7.centos.noarch.rpm
+    name=/tmp/zookeeper-3.4.6-1.fc21.noarch.rpm
     state=present
-- name: Create /var/local/zookeeper
+- name: Create /var/opt/zookeeper
   file:
-    name=/var/local/zookeeper
+    name=/var/opt/zookeeper
     owner=zookeeper
     group=zookeeper
     mode=700
@@ -23,10 +23,10 @@
     group=zookeeper
     mode=600
     src=myid.j2
-    dest=/var/local/zookeeper/myid
-- name: Create /usr/local/etc/zookeeper
+    dest=/var/opt/zookeeper/myid
+- name: Create /opt/zookeeper/conf
   file:
-    name=/usr/local/etc/zookeeper
+    name=/opt/zookeeper/conf
     owner=root
     group=root
     mode=755
@@ -37,4 +37,4 @@
     group=root
     mode=644
     src=zoo.cfg.j2
-    dest=/usr/local/etc/zookeeper/zoo.cfg
+    dest=/opt/zookeeper/conf/zoo.cfg

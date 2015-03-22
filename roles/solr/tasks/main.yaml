@@ -4,9 +4,9 @@
     owner=root
     group=root
     mode=600
-    src=solr-4.10.0-1.el7.centos.noarch.rpm
-    dest=/tmp/solr-4.10.0-1.el7.centos.noarch.rpm
+    src=solr-5.0.0-1.fc21.noarch.rpm
+    dest=/tmp/solr-5.0.0-1.fc21.noarch.rpm
 - name: Install Solr
   yum:
-    name=/tmp/solr-4.10.0-1.el7.centos.noarch.rpm
+    name=/tmp/solr-5.0.0-1.fc21.noarch.rpm
     state=present
