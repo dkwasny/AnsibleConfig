@@ -41,3 +41,10 @@
     group=hbase
     mode=700
     state=directory
+- name: Setup aliases
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=hbase.sh
+    dest=/etc/profile.d/hbase.sh

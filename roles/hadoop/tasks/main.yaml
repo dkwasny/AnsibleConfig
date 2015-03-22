@@ -52,3 +52,10 @@
     - /var/opt/yarn
     - /var/opt/yarn/nm-local-dir
     - /var/opt/yarn/log
+- name: Setup aliases
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=hadoop.sh
+    dest=/etc/profile.d/hadoop.sh
