@@ -38,3 +38,8 @@
   remote_user: root
   roles:
     - solr
+
+- hosts: pig
+  remote_user: root
+  roles:
+    - pig

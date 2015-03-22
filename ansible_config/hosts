@@ -20,3 +20,6 @@ vm-grid-[1:4]
 
 [solr]
 vm-grid-[1:4]
+
+[pig]
+vm-grid-1
