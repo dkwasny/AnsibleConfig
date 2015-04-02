@@ -1,0 +1,54 @@
+# Inventory File
+#
+# Groups listed as (single) must only contain one machine.
+# If multiple machines are used, only the first one will be used.
+#
+# Groups listed as (multiple) can contain one to many machines.
+
+# (multiple) All machines managed by Ansible.
+[all]
+vm-grid-[1:4]
+
+# (single) NTP host for all time_client machines.
+# Syncs system clock with NTP pool.
+[time_server]
+vm-grid-1
+
+# (multiple) Syncs system clock with time_server.
+[time_client]
+vm-grid-[2:4]
+
+# (single) Serves as HDFS Namenode and YARN ResourceManager.
+[hadoop_namenode]
+vm-grid-1
+
+# (multiple) Serves as HDFS Datanode and YARN NodeManager.
+[hadoop_datanode]
+vm-grid-[1:4]
+
+# (multiple) Serves as Zookeeper quorum.
+# Each machine must declare a variable named "myid" that contains a unique
+# integer for that machine.
+# EX. "server myid=1"
+[zookeeper]
+vm-grid-2 myid=1
+vm-grid-3 myid=2
+vm-grid-4 myid=3
+
+# (single) Serves as HBase Master.
+[hbase_master]
+vm-grid-1
+
+# (multiple) Serves as HBase RegionServer.
+# Due to a change in HBase 1.0, you must NOT have the same machine in
+# hbase_master and hbase_regionserver.
+[hbase_regionserver]
+vm-grid-[2:4]
+
+# (multiple) Serves as Solr node.
+[solr]
+vm-grid-[1:4]
+
+# (multiple) Has Pig installed.
+[pig]
+vm-grid-1

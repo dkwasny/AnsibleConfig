@@ -1,0 +1,8 @@
+---
+hadoop_namenode: "{{ groups.hadoop_namenode[0] }}"
+hadoop_datanodes: "{{ groups.hadoop_datanode }}"
+time_server: "{{ groups.time_server[0] }}"
+zookeeper_quorum: "{{ groups.zookeeper }}"
+hbase_master: "{{ groups.hbase_master[0] }}"
+hbase_regionservers: "{{ groups.hbase_regionserver }}"
+solr_nodes: "{{ groups.solr }}"

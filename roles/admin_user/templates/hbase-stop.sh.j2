@@ -1,8 +1,8 @@
 #!/bin/bash
 
-{% for regionserver in regionservers %}
-	echo "Stopping regionserver {{ regionserver }}";
-	ssh -t {{ regionserver }} "sudo systemctl stop hbase-regionserver";
+{% for regionserver in hbase_regionservers %}
+echo "Stopping regionserver {{ regionserver }}";
+ssh -t {{ regionserver }} "sudo systemctl stop hbase-regionserver";
 {% endfor %}
 echo "Stopping master {{ hbase_master }}"
 ssh -t {{ hbase_master }} "sudo systemctl stop hbase-master";

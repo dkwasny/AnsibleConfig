@@ -1,5 +1,5 @@
 ---
-- hosts: vm_grid_all
+- hosts: all
   remote_user: root
   roles:
     - hosts_file
@@ -19,7 +19,7 @@
   roles:
     - chrony_client
 
-- hosts: hadoop
+- hosts: hadoop_namenode:hadoop_datanode
   remote_user: root
   roles:
     - hadoop
@@ -29,7 +29,7 @@
   roles:
     - zookeeper
 
-- hosts: hbase
+- hosts: hbase_master:hbase_regionserver
   remote_user: root
   roles:
     - hbase
