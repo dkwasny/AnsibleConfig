@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
-    - hosts_file
     - base_packages
     - java
     - firewalld
@@ -10,36 +10,43 @@
     - admin_user
 
 - hosts: time_server
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - chrony_server
 
 - hosts: time_client
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - chrony_client
 
 - hosts: hadoop_namenode:hadoop_datanode
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - hadoop
 
 - hosts: zookeeper
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - zookeeper
 
 - hosts: hbase_master:hbase_regionserver
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - hbase
 
 - hosts: solr
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - solr
 
 - hosts: pig
-  remote_user: root
+  remote_user: vagrant
+  sudo: yes
   roles:
     - pig
