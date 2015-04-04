@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <short>Loopback</short>
+  <description>A simple rule that allows all 127.0.0.0/8 traffic (Vagrant w/ port forwarding).</description>
+  <source address="127.0.0.0/8" />
+</zone>
