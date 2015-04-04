@@ -20,11 +20,16 @@
     src=local.xml
     dest=/etc/firewalld/zones/local.xml
   notify: restart firewalld
-- name: Setup loopback zone
+- name: Setup vboxnat zone
   copy:
     owner=root
     group=root
     mode=644
-    src=loopback.xml
-    dest=/etc/firewalld/zones/loopback.xml
+    src=vboxnat.xml
+    dest=/etc/firewalld/zones/vboxnat.xml
   notify: restart firewalld
+- name: Enable firewalld
+  service:
+    name=firewalld
+    state=started
+    enabled=yes
