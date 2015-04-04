@@ -33,7 +33,15 @@ Run Ansible (from the host machine)
 
 Run Ansible (from one of the VMs)
 ---------------------
-1. SSH into the VM you wish to run Ansible from and clone this repo.
+1. Vagrant SSH into the VM you wish to run Ansible from and clone this repo.
+
+        vagrant ssh <machine> 
+
+1. Generate a SSH key for the vagrant user.
+
+        ssh-keygen
+        # Mash enter until the key is made
+
 1. Copy the vagrant user's SSH key to all VMs (including the one you are on)
 
         # This is just an example command
@@ -41,7 +49,7 @@ Run Ansible (from one of the VMs)
 
 1. Execute the playbook
 
-    ansible-playbook -i inventory site.yaml
+        ansible-playbook -i inventory site.yaml
 
 Daemons
 -----------
