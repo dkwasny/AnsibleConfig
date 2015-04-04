@@ -1,6 +1,6 @@
 AnsibleConfig
 =============
-A reimplementation of [PuppetConfig](https://github.com/dkwasny/PuppetConfig) with Ansible instead of Puppet.
+A reimplementation of [PuppetConfig](https://github.com/dkwasny/PuppetConfig) with [Ansible](http://www.ansible.com/home) instead of Puppet.
 Puppet is a fine technology, but is a little too much for my needs.
 I found myself only using puppet in --no-daemonize mode and never using it as a real persistent daemon.
 Ansible seems to be geared toward this "daemon-less" and "on-demand" model.
