@@ -25,6 +25,8 @@ There are files in the repo with a suffix of **.goeshere**.
 This files are markers meant to tell you that the real file "goes here".
 These files are just too big to be reasonably stored in a GitHub repo, and can be retrieved by running [get_rpms.sh](get_rpms.sh) or by manually downloading the links within the script.
 
+If the Dropbox links are down or get_rpms.sh has any issues, you can also retrieve the RPMs via [Google Drive](https://drive.google.com/folderview?id=0BxpgL9f7eLyfUHhqWlRtRHRQS28&usp=sharing).
+
 Run Ansible (from the host machine)
 -----------------------
 1. The host machine will need to have a working DNS/hosts file that points to your VMs.
