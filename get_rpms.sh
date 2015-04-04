@@ -9,7 +9,7 @@ function get_file() {
 	if [ -e "$DEST" ]; then
 		echo "$DEST already exists...skipping...";
 	else
-		echo wget -O "$DEST" "$SRC"
+		wget -O "$DEST" "$SRC"
 	fi;
 }
 
