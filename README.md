@@ -9,65 +9,23 @@ Ansible's use of SSH instead of a custom daemon also simplifies VM setup.
 Like [PuppetConfig](https://github.com/dkwasny/PuppetConfig), this repo is inteded to target RHEL/Centos 7 guest VMs.
 To make life easier, all VMs will open up all 192.168.122.0/24 traffic.
 
-If you want to change VM names or use a different number of VMs, then you will need to modify your hosts file, [the VMs hosts file](roles/hosts_file/files/hosts) and [Ansible's inventory file](inventory) appropriately.
+[Vagrant](https://www.vagrantup.com/) can be used to quickly get you some VMs.
+The playbook expects a working DNS/hosts file, which [Vagrantfile](Vagrantfile) will setup for you.
 
-If you have a DNS setup, then the [hosts_file role](roles/hosts_file) is unnecessary.
+If you want to change VM names or use a different number of VMs, then you will need to modify the [Vagrantfile](Vagrantfile) and [Ansible's inventory file](inventory) appropriately.
 
-VM Naming Scheme
-----------------
-vm-grid-(number)
-
-Local Hosts File Setup
-----------------------
-Unless you have a DNS setup, you will need to add the VMs to your local hosts file.
-You can use [hosts](roles/hosts_file/files/hosts) as a reference.
-
-Network Setup
--------------
-* For the sake of consistency, use a local network of 192.168.122.0/24.
-* Ensure the gateway is 192.168.122.1.
-
-Network Setup (libvirt)
------------------------
-1. Copy /usr/share/libvirt/networks/default.xml to static.xml.
-1. Change the name from default to static within static.xml.
-1. Remove the DHCP entry in static.xml.
-1.  Open up virsh:
-	1. net-destroy default
-	1. net-autostart --disable default
-	1. net-define /usr/share/libvirt/networks/static.xml
-	1. net-autostart static
-	1. net-start static
-
-Network Setup (VirtualBox)
---------------------------
-1. Create a new host-only network that has no DHCP server.
-1. Give all new VMs a NAT and host-only network adapter.
-
-VM Creation (libvirt)
+Setup VMs via Vagrant
 ---------------------
-sudo virt-install --connect=qemu:///system -n [name] -r [memory-in-MB] --vcpus=[num-of-cores] --cdrom=/usr/share/libvirt/install-media/CentOS-7.0-1406-x86_64-Minimal.iso --os-variant=rhel7 --disk path=/var/lib/libvirt/images/[name],size=[size-of-storage-in-GB] -w network=static --graphics vnc
-
-VM Configuration
-------------------------
-1. Change /etc/sysconfig/network-scripts/ifcfg-eth0
-	* Set BOOTPROTO=none
-	* Set ONBOOT=yes
-	* Add IPADDR=192.168.122.1[number-of-vm]
-	* Add NETMASK=255.255.255.0
-	* Add GATEWAY=192.168.122.1 (needed for libvirt)
-	* Add DNS1=192.168.122.1 (needed for libvirt)
-1. Restart the network
-	* systemctl restart network
-1. Update all packages
-	* yum -y install deltarpm; yum -y update;
-1. Restart the machine to pickup any new kernel updates and whatnot.
-1. Use ssh-copy-id to add your ssh key to the root user on all VMs
-	* ssh-copy-id root@[vm-ip-address]
-	* There are safer ways to do this, but I don't care when dealing with toy VMs.
+vagrant up --provider virtualbox
+Only the Virtualbox provider will get the correct memory and CPU VM settings.
 
 Run Ansible
 -----------
+You can run Ansible directly from your host machine if you have a working DNS/hosts file.
+
+Otherwise, you can clone this repo on one of the created VMs and run it from there.
+The [Vagrantfile](Vagrantfile) will install Git and Ansible on all VMs for you.
+
 ansible-playbook -i [inventory](inventory) [site.yaml](site.yaml)
 
 Daemons
