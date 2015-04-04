@@ -22,7 +22,7 @@ vm_cpus = "2"
 #
 # Do not let this range exceed (1..99) due to the use of
 # these numbers in IP addresses.
-vm_ids = (1..2)
+vm_ids = (1..4)
 
 # The prefix for every created VM.
 # All VMs will use this prefix with the id appended to the end.
@@ -44,12 +44,24 @@ vm_name_prefix = "vm-grid-"
 private_ip_prefix = "192.168.122"
 
 Vagrant.configure(2) do |config|
+	# Base VM setup
 	config.vm.box = "chef/centos-7.0"
 	config.vm.provider "virtualbox" do |vb|
 		vb.memory = vm_memory
 		vb.cpus = vm_cpus
 	end
-	
+
+	# Base provisioning
+	# 
+	# This can be rather slow depending on your internet connection.
+	# Feel free to comment this out if necessary.
+	config.vm.provision "shell", inline: "
+		yum -y install deltarpm;
+		yum -y update;
+		yum -y install git epel-release;
+		yum -y install ansible;
+	"
+
 	# Provision the /etc/hosts file for all VMs
 	vm_ids.each do |i|
 		vm_name = "#{vm_name_prefix}#{i}"
@@ -58,7 +70,7 @@ Vagrant.configure(2) do |config|
 	end
 
 	# The first node becomes the primary node
-	is_primary = true;
+	is_primary = true
 	vm_ids.each do |i|
 		vm_name = "#{vm_name_prefix}#{i}"
 		ip_address = "#{private_ip_prefix}.1#{i}"
@@ -66,7 +78,7 @@ Vagrant.configure(2) do |config|
 			node.vm.network "private_network", ip: ip_address
 			node.vm.hostname = vm_name
 		end
-		is_primary = false;
+		is_primary = false
 	end
 
 end
