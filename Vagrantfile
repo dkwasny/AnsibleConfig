@@ -51,14 +51,19 @@ Vagrant.configure(2) do |config|
 		vb.cpus = vm_cpus
 	end
 
+	# Disable the shared folder
+	config.vm.synced_folder ".", "/vagrant", disabled: true
+
 	# Base provisioning
 	# 
-	# This can be rather slow depending on your internet connection.
+	# This can be slow depending on your internet connection.
 	# Feel free to comment this out if necessary.
+	#
+	# I would like to do a 'yum update' here, but updating the kernel
+	# causes all kinds of hell for the VirtualBox guest additions.
+	# It's also really slow too...
 	config.vm.provision "shell", inline: "
-		yum -y install deltarpm;
-		yum -y update;
-		yum -y install git epel-release;
+		yum -y install deltarpm git epel-release;
 		yum -y install ansible;
 	"
 
