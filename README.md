@@ -42,7 +42,7 @@ Run Ansible (from one of the VMs)
         ssh-keygen
         # Mash enter until the key is made
 
-1. Copy the vagrant user's SSH key to all VMs (including the one you are on)
+1. Copy the vagrant user's SSH key to all VMs (including the one you are on).
 
         # This is just an example command
         for i in 1 2 3 4; do ssh-copy-id vagrant@vm-grid-$i; done;
