@@ -19,13 +19,29 @@ Setup VMs via Vagrant
     vagrant up --provider virtualbox
 Only the Virtualbox provider will get the correct memory and CPU VM settings.
 
-Run Ansible
------------
-    ansible-playbook -i inventory site.yaml
-You can run Ansible directly from your host machine if you have a working DNS/hosts file.
+Run Ansible (from the host machine)
+-----------------------
+1. The host machine will need to have a working DNS/hosts file that points to your VMs.
+1. Copy your SSH key to the vagrant user on all VMs.
 
-Otherwise, you can clone this repo on one of the created VMs and run it from there.
-The [Vagrantfile](Vagrantfile) will install Git and Ansible on all VMs for you.
+        # This is just an example command
+        for i in 1 2 3 4; do ssh-copy-id vagrant@vm-grid-$i; done;
+
+1. Execute the playbook.
+
+        ansible-playbook -i inventory site.yaml
+
+Run Ansible (from one of the VMs)
+---------------------
+1. SSH into the VM you wish to run Ansible from and clone this repo.
+1. Copy the vagrant user's SSH key to all VMs (including the one you are on)
+
+        # This is just an example command
+        for i in 1 2 3 4; do ssh-copy-id vagrant@vm-grid-$i; done;
+
+1. Execute the playbook
+
+    ansible-playbook -i inventory site.yaml
 
 Daemons
 -----------
