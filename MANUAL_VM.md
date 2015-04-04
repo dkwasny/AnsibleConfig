@@ -1,3 +1,6 @@
+Notes For Manual VM Setup
+=========================
+
 Network Setup
 -------------
 * For the sake of consistency, use a local network of 192.168.122.0/24.
@@ -14,9 +17,6 @@ Network Setup (libvirt)
 	1. net-define /usr/share/libvirt/networks/static.xml
 	1. net-autostart static
 	1. net-start static
-
-Misc Notes
-==========
 
 Network Setup (VirtualBox)
 --------------------------
