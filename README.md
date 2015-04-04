@@ -19,6 +19,12 @@ Setup VMs via Vagrant
     vagrant up --provider virtualbox
 Only the Virtualbox provider will get the correct memory and CPU VM settings.
 
+Retrieve RPM Files
+------------------
+There are files in the repo with a suffix of **.goeshere**.
+This files are markers meant to tell you that the real file "goes here".
+These files are just too big to be reasonably stored in a GitHub repo, and can be retrieved by running [get_rpms.sh](get_rpms.sh) or by manually downloading the links within the script.
+
 Run Ansible (from the host machine)
 -----------------------
 1. The host machine will need to have a working DNS/hosts file that points to your VMs.
@@ -86,12 +92,6 @@ Here is a list of the stacks I have setup so far.
 * hbase: Starts all hdfs, yarn, zookeeper and hbase daemons
 * solrcloud: Starts all hdfs, yarn, zookeeper and solr daemons.
 * all: Starts all the things!
-
-.goeshere Files
------------
-There are files in the repo with a suffix of **.goeshere**.
-This files are markers meant to tell you that the real file "goes here".
-These files are just too big to be reasonably stored in a GitHub repo, and can be found on [Google Drive](https://drive.google.com/folderview?id=0BxpgL9f7eLyfUHhqWlRtRHRQS28&usp=sharing).
 
 Custom RPM Files
 -----------
