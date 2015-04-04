@@ -47,7 +47,7 @@ Run Ansible (from one of the VMs)
         # This is just an example command
         for i in 1 2 3 4; do ssh-copy-id vagrant@vm-grid-$i; done;
 
-1. Execute the playbook
+1. Execute the playbook.
 
         ansible-playbook -i inventory site.yaml
 
