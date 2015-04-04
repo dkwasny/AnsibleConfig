@@ -20,3 +20,11 @@
     src=local.xml
     dest=/etc/firewalld/zones/local.xml
   notify: restart firewalld
+- name: Setup loopback zone
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=loopback.xml
+    dest=/etc/firewalld/zones/loopback.xml
+  notify: restart firewalld
