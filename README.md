@@ -16,17 +16,16 @@ If you want to change VM names or use a different number of VMs, then you will n
 
 Setup VMs via Vagrant
 ---------------------
-vagrant up --provider virtualbox
+    vagrant up --provider virtualbox
 Only the Virtualbox provider will get the correct memory and CPU VM settings.
 
 Run Ansible
 -----------
+    ansible-playbook -i inventory site.yaml
 You can run Ansible directly from your host machine if you have a working DNS/hosts file.
 
 Otherwise, you can clone this repo on one of the created VMs and run it from there.
 The [Vagrantfile](Vagrantfile) will install Git and Ansible on all VMs for you.
-
-ansible-playbook -i [inventory](inventory) [site.yaml](site.yaml)
 
 Daemons
 -----------
