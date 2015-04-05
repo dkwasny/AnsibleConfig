@@ -81,7 +81,11 @@ Vagrant.configure(2) do |config|
 		ip_address = "#{private_ip_prefix}.1#{i}"
 		config.vm.define vm_name, primary: is_primary do |node|
 			node.vm.network "private_network", ip: ip_address
-			node.vm.hostname = vm_name
+			# Manually set the hostname.
+			# Using node.vm.hostame will cause Vagrant to add a
+			# "127.0.0.1 hostname" mapping to /etc/hosts which
+			# conflicts with the /etc/hosts provisioning I do above.
+			node.vm.provision "shell", inline: "hostnamectl set-hostname #{vm_name}"
 		end
 		is_primary = false
 	end
