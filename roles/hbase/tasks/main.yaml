@@ -41,7 +41,7 @@
     group=hbase
     mode=700
     state=directory
-- name: Setup aliases
+- name: Setup PATH
   copy:
     owner=root
     group=root

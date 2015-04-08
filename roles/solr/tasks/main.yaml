@@ -10,3 +10,10 @@
   yum:
     name=/tmp/solr-5.0.0-1.fc21.noarch.rpm
     state=present
+- name: Setup PATH
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=solr.sh
+    dest=/etc/profile.d/solr.sh

@@ -1,1 +1,1 @@
-alias hbase="/opt/hbase/bin/hbase";
+export PATH="$PATH:/opt/hbase/bin";

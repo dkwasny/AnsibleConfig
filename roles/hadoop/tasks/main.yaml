@@ -52,7 +52,7 @@
     - /var/opt/yarn
     - /var/opt/yarn/nm-local-dir
     - /var/opt/yarn/log
-- name: Setup aliases
+- name: Setup PATH
   copy:
     owner=root
     group=root

@@ -1,1 +1,1 @@
-alias pig="/opt/pig/bin/pig"
+export PATH="$PATH:/opt/pig/bin"

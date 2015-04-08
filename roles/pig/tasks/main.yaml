@@ -17,7 +17,7 @@
     mode=644
     src=pig-env.sh
     dest=/opt/pig/conf/pig-env.sh
-- name: Setup aliases
+- name: Setup PATH
   copy:
     owner=root
     group=root
