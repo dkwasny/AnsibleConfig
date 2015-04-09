@@ -29,6 +29,7 @@
     - hdfs-site.xml
     - slaves
     - yarn-site.xml
+    - mapred-site.xml
 - name: Setup HDFS folders
   file:
     name={{ item }}
