@@ -8,7 +8,7 @@
 # that will be created.
 
 # How much memory (MB) to give each VM.
-vm_memory = "6000"
+vm_memory = "3000"
 
 # How many CPUs to give each VM.
 vm_cpus = "2"
@@ -54,19 +54,6 @@ Vagrant.configure(2) do |config|
 	# Disable the shared folder
 	config.vm.synced_folder ".", "/vagrant", disabled: true
 
-	# Base provisioning
-	# 
-	# This can be slow depending on your internet connection.
-	# Feel free to comment this out if necessary.
-	#
-	# I would like to do a 'yum update' here, but updating the kernel
-	# causes all kinds of hell for the VirtualBox guest additions.
-	# It's also really slow too...
-	config.vm.provision "shell", inline: "
-		yum -y install deltarpm git epel-release;
-		yum -y install ansible;
-	"
-
 	# Provision the /etc/hosts file for all VMs
 	vm_ids.each do |i|
 		vm_name = "#{vm_name_prefix}#{i}"
@@ -75,19 +62,31 @@ Vagrant.configure(2) do |config|
 	end
 
 	# The first node becomes the primary node
-	is_primary = true
+	first_node = true
 	vm_ids.each do |i|
+		is_primary = first_node
 		vm_name = "#{vm_name_prefix}#{i}"
 		ip_address = "#{private_ip_prefix}.1#{i}"
 		config.vm.define vm_name, primary: is_primary do |node|
 			node.vm.network "private_network", ip: ip_address
-			# Manually set the hostname.
-			# Using node.vm.hostame will cause Vagrant to add a
-			# "127.0.0.1 hostname" mapping to /etc/hosts which
-			# conflicts with the /etc/hosts provisioning I do above.
-			node.vm.provision "shell", inline: "hostnamectl set-hostname #{vm_name}"
+			node.vm.hostname = vm_name
+			
+			# Explicitly remove the 127.0.0.1 -> hostname entry in /etc/ hosts.
+			# Leaving this causes daemons to listen on 127.0.0.1 instead
+			# of the private network defined earlier.
+			node.vm.provision "shell", inline: "
+				sed -i 's/127\.0\.0\.1[[:space:]]*#{vm_name}/127.0.0.1/' /etc/hosts
+			"
+			
+			# Only add additional packages to the primary node
+			if is_primary
+				node.vm.provision "shell", inline: "
+					yum -y install deltarpm git epel-release;
+					yum -y install ansible;
+				"
+			end
 		end
-		is_primary = false
+		first_node = false
 	end
 
 end
