@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
 			node.vm.network "private_network", ip: ip_address
 			node.vm.hostname = vm_name
 			
-			# Explicitly remove the 127.0.0.1 -> hostname entry in /etc/ hosts.
+			# Explicitly remove the 127.0.0.1 -> hostname entry in /etc/hosts.
 			# Leaving this causes daemons to listen on 127.0.0.1 instead
 			# of the private network defined earlier.
 			node.vm.provision "shell", inline: "
