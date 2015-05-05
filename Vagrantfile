@@ -75,7 +75,7 @@ Vagrant.configure(2) do |config|
 			# Leaving this causes daemons to listen on 127.0.0.1 instead
 			# of the private network defined earlier.
 			node.vm.provision "shell", inline: "
-				sed -i 's/127\.0\.0\.1[[:space:]]*#{vm_name}/127.0.0.1/' /etc/hosts
+				sed -i 's/127\.0\.0\.1[[:space:]]*#{vm_name}/127.0.0.1 /' /etc/hosts
 			"
 			
 			# Only add additional packages to the primary node
