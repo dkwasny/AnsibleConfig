@@ -116,7 +116,3 @@ fi
 
 # Set the heapsize to 512m
 SERVER_JVMFLAGS="$SERVER_JVMFLAGS -Xmx512m";
-
-# Turn off JMX.
-# This just needs to be any nonempty string.
-JMXDISABLE="NotToday"
