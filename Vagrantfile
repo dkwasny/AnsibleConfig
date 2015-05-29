@@ -8,7 +8,10 @@
 # that will be created.
 
 # How much memory (MB) to give each VM.
-vm_memory = "3000"
+# These settings are intended for host machines with 32GB memory.
+# This should leave 4GB free for the host OS.
+primary_vm_memory = "8500"
+vm_memory = "6500"
 
 # How many CPUs to give each VM.
 vm_cpus = "2"
@@ -47,7 +50,6 @@ Vagrant.configure(2) do |config|
 	# Base VM setup
 	config.vm.box = "chef/centos-7.0"
 	config.vm.provider "virtualbox" do |vb|
-		vb.memory = vm_memory
 		vb.cpus = vm_cpus
 	end
 
@@ -78,12 +80,19 @@ Vagrant.configure(2) do |config|
 				sed -i 's/127\.0\.0\.1[[:space:]]*#{vm_name}/127.0.0.1 /' /etc/hosts
 			"
 			
-			# Only add additional packages to the primary node
+			# Primary node specific settings
 			if is_primary
 				node.vm.provision "shell", inline: "
 					yum -y install deltarpm git epel-release;
 					yum -y install ansible;
 				"
+				node.vm.provider "virtualbox" do |vb|
+					vb.memory = primary_vm_memory
+				end
+			else
+				node.vm.provider "virtualbox" do |vb|
+					vb.memory = vm_memory
+				end
 			end
 		end
 		first_node = false
