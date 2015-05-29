@@ -39,7 +39,7 @@
     src=zoo.cfg.j2
     dest=/opt/zookeeper/conf/zoo.cfg
 - name: Setup zkEnv.sh
-  file:
+  copy:
     owner=root
     group=root
     mode=755
