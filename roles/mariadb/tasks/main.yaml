@@ -8,3 +8,7 @@
     name=mariadb
     enabled=yes
     state=started
+- name: Install MySQL-python
+  yum:
+    name=MySQL-python
+    state=present
