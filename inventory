@@ -52,3 +52,7 @@ vm-grid-[1:4]
 # (multiple) Has Pig installed.
 [pig]
 vm-grid-1
+
+# (single) Serves as the Hive server.
+[hive]
+vm-grid-1

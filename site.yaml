@@ -50,3 +50,10 @@
   sudo: yes
   roles:
     - pig
+
+- hosts: hive
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - mariadb
+    - hive
