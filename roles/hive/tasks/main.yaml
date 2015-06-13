@@ -31,6 +31,13 @@
     mode=755
     src=webhcat-env.sh
     dest=/opt/hive/hcatalog/etc/webhcat/webhcat-env.sh
+- name: Copy hcat-env.sh
+  copy:
+    owner=root
+    group=root
+    mode=755
+    src=hcat-env.sh
+    dest=/opt/hive/hcatalog/etc/hcatalog/hcat-env.sh
 - name: Copy hive-site.xml
   template:
     owner=root
