@@ -74,6 +74,9 @@ Here is a list of all installed daemons.
 * hbase-master
 * hbase-regionserver
 * solr
+* hive-server
+* hive-hcatalog
+* hive-webhcat
 
 Administration Scripts
 ----------
@@ -91,6 +94,7 @@ Here is a list of the stacks I have setup so far.
 * hadoop: Starts all hdfs and yarn daemons
 * hbase: Starts all hdfs, yarn, zookeeper and hbase daemons
 * solrcloud: Starts all hdfs, yarn, zookeeper and solr daemons.
+* hive: Starts all hdfs, yarn and Hive daemons.
 * all: Starts all the things!
 
 Custom RPM Files
