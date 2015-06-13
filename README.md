@@ -19,6 +19,9 @@ Setup VMs via Vagrant
     vagrant up --provider virtualbox
 Only the Virtualbox provider will get the correct memory and CPU VM settings.
 
+**The [Vagrantfile](Vagrantfile) is configured for hosts with 32GB memory.**
+You may need to make local modifications to the Vagrant file for your system.
+
 Retrieve RPM Files
 ------------------
 There are files in the repo with a suffix of **.goeshere**.
