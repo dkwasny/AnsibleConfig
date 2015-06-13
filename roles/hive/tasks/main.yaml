@@ -52,3 +52,10 @@
     login_password=
     priv=hive_metastore:ALL
     state=present
+- name: Symlink mysql-connector-java to Hive's lib directory
+  file:
+    name=/opt/hive/lib/mysql-connector-java.jar
+    state=link
+    src=/usr/share/java/mysql-connector-java.jar
+    owner=root
+    group=root

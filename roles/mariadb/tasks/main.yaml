@@ -12,3 +12,7 @@
   yum:
     name=MySQL-python
     state=present
+- name: Install mysql-connector-java
+  yum:
+    name=mysql-connector-java
+    state=present
