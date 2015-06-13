@@ -1,0 +1,51 @@
+---
+- name: Copy Hive RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=hive-1.2.0-1.el7.centos.noarch.rpm
+    dest=/tmp/hive-1.2.0-1.el7.centos.noarch.rpm
+- name: Install Hive
+  yum:
+    name=/tmp/hive-1.2.0-1.el7.centos.noarch.rpm
+    state=present
+- name: Copy webhcat-log4j.properties
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=webhcat-log4j.properties
+    dest=/opt/hive/hcatalog/etc/webhcat/webhcat-log4j.properties
+- name: Copy hive-env.sh
+  copy:
+    owner=root
+    group=root
+    mode=755
+    src=hive-env.sh
+    dest=/opt/hive/conf/hbase-env.sh
+- name: Copy hive-site.xml
+  template:
+    owner=root
+    group=root
+    mode=644
+    src=hive-site.xml.j2
+    dest=/opt/hive/conf/hive-site.xml
+- name: Setup PATH
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=hive.sh
+    dest=/etc/profile.d/hive.sh
+- name: Create Hive Metastore in database
+  mysql_db:
+    name=hive_metastore
+    login_user=root
+    state=present
+- name: Allow the hive user to access the Hive Metastore
+  mysql_user:
+    name=hive
+    password=password
+    priv=hive_metastore:ALL
+    state=present
