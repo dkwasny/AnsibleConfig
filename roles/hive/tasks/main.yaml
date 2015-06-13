@@ -23,7 +23,7 @@
     group=root
     mode=755
     src=hive-env.sh
-    dest=/opt/hive/conf/hbase-env.sh
+    dest=/opt/hive/conf/hive-env.sh
 - name: Copy hive-site.xml
   template:
     owner=root
