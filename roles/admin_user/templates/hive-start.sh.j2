@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Starting hcatalog"
+ssh -t {{ hive_server }} "sudo systemctl start hive-hcatalog";
+echo "Starting webhcat"
+ssh -t {{ hive_server }} "sudo systemctl start hive-webhcat";
+echo "Starting hive server"
+ssh -t {{ hive_server }} "sudo systemctl start hive-server";

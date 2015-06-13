@@ -87,6 +87,8 @@
     - hbase-stop.sh
     - solr-start.sh
     - solr-stop.sh
+    - hive-start.sh
+    - hive-stop.sh
 - name: Setup stack scripts
   copy:
     owner=admin
