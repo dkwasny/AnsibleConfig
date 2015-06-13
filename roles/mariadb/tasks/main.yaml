@@ -20,3 +20,13 @@
   yum:
     name=mysql-connector-java
     state=present
+- name: Delete anonymous users
+  mysql_user:
+    name=
+    host={{ item }}
+    login_user=root
+    login_password=
+    state=absent
+  with_items:
+    - localhost
+    - "{{ inventory_hostname }}"
