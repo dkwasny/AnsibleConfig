@@ -61,6 +61,7 @@
 - name: Allow the hive user to access the Hive Metastore
   mysql_user:
     name=hive
+    host=%
     password=password
     login_user=root
     login_password=
