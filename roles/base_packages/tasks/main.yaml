@@ -11,3 +11,5 @@
     - epel-release
     - htop
     - tmux
+    - rpmbuild
+    - rpmdevtools
