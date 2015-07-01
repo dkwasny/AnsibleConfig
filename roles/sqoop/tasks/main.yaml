@@ -1,0 +1,26 @@
+---
+- name: Copy Sqoop RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=sqoop-1.4.6-1.el7.centos.noarch.rpm
+    dest=/tmp/sqoop-1.4.6-1.el7.centos.noarch.rpm
+- name: Install Sqoop
+  yum:
+    name=/tmp/sqoop-1.4.6-1.el7.centos.noarch.rpm
+    state=present
+- name: Copy sqoop-env.sh
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=sqoop-env.sh
+    dest=/opt/sqoop/conf/sqoop-env.sh
+- name: Setup PATH
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=sqoop.sh
+    dest=/etc/profile.d/sqoop.sh

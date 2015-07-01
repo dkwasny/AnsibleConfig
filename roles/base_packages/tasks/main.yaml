@@ -13,3 +13,5 @@
     - tmux
     - rpm-build
     - rpmdevtools
+    - mysql-connector-java
+    - MySQL-python

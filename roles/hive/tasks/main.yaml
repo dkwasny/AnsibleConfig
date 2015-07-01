@@ -55,6 +55,7 @@
 - name: Create Hive Metastore in database
   mysql_db:
     name=hive_metastore
+    login_host={{ mariadb_server }}
     login_user=root
     login_password=
     state=present
@@ -63,6 +64,7 @@
     name=hive
     host=%
     password=password
+    login_host={{ mariadb_server }}
     login_user=root
     login_password=
     priv=hive_metastore.*:ALL

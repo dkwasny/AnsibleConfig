@@ -21,3 +21,4 @@ get_file "https://www.dropbox.com/s/ax5pax6bp9m6vw4/hadoop-2.6.0-1.fc21.x86_64.r
 get_file "https://www.dropbox.com/s/dnt92fy0pemhkji/hbase-1.0.0-1.fc21.x86_64.rpm?dl=1" "$BASE_DIR/roles/hbase/files/hbase-1.0.0-1.fc21.x86_64.rpm";
 get_file "https://www.dropbox.com/s/q11f80l422b3f4g/pig-0.14.0-1.fc21.noarch.rpm?dl=1" "$BASE_DIR/roles/pig/files/pig-0.14.0-1.fc21.noarch.rpm";
 get_file "https://www.dropbox.com/s/gqy6pcnfpcoq1ms/hive-1.2.0-1.el7.centos.noarch.rpm?dl=1" "$BASE_DIR/roles/hive/files/hive-1.2.0-1.el7.centos.noarch.rpm";
+get_file "https://www.dropbox.com/s/4ka23evh8hxrm9w/sqoop-1.4.6-1.el7.centos.noarch.rpm?dl=1" "$BASE_DIR/roles/sqoop/files/sqoop-1.4.6-1.el7.centos.noarch.rpm";

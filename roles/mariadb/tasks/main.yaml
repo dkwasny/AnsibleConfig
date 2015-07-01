@@ -12,14 +12,7 @@
     name=mariadb
     enabled=yes
     state=started
-- name: Install MySQL-python
-  yum:
-    name=MySQL-python
-    state=present
-- name: Install mysql-connector-java
-  yum:
-    name=mysql-connector-java
-    state=present
+# TODO: Automate mysql_secure_installation instead
 - name: Delete anonymous users
   mysql_user:
     name=

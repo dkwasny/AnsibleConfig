@@ -56,3 +56,11 @@ vm-grid-1
 # (single) Serves as the Hive server.
 [hive]
 vm-grid-1
+
+# (multiple) Has Sqoop installed.
+[sqoop]
+vm-grid-1
+
+# (single) Serves as the MariaDB host.
+[mariadb]
+vm-grid-1
