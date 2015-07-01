@@ -21,6 +21,18 @@
   roles:
     - chrony_client
 
+# It is important that this entry shows up before any others that expect
+# a working SQL server.
+# This "dependency" should not be handled via role dependencies since
+# one server may expect MariaDB to be running on another server.
+# Using a role dependency would force each machine to have its own
+# MariaDB server.
+- hosts: mariadb
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - mariadb
+
 - hosts: hadoop_namenode:hadoop_datanode
   remote_user: vagrant
   sudo: yes
@@ -55,7 +67,6 @@
   remote_user: vagrant
   sudo: yes
   roles:
-    - mariadb
     - hive
 
 - hosts: sqoop
