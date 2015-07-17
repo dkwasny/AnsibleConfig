@@ -9,6 +9,11 @@
 [all]
 vm-grid-[1:4]
 
+# (single) The machine to create and run programs from.
+# Installs additional utilities not needed by any of the other processes.
+[development]
+vm-grid-1
+
 # (single) NTP host for all time_client machines.
 # Syncs system clock with NTP pool.
 [time_server]

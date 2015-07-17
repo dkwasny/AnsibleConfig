@@ -9,6 +9,12 @@
     - journald
     - admin_user
 
+- hosts: development
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - development
+
 - hosts: time_server
   remote_user: vagrant
   sudo: yes

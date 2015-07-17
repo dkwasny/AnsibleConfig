@@ -1,4 +1,11 @@
 ---
+- name: Install mysql/mariadb connector packages
+  yum:
+    name={{ item }}
+    state=present
+  with_items:
+    - mysql-connector-java
+    - MySQL-python
 - name: Copy Hive RPM
   copy:
     owner=root

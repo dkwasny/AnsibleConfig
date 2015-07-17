@@ -6,12 +6,6 @@
   with_items:
     - vim-enhanced
     - wget
-    - git
     - nmap-ncat
     - epel-release
     - htop
-    - tmux
-    - rpm-build
-    - rpmdevtools
-    - mysql-connector-java
-    - MySQL-python
