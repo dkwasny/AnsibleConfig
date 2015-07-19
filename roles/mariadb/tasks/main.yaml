@@ -1,12 +1,12 @@
 ---
-- name: Install MariaDB Client
+- name: Install MariaDB Packages
   yum:
-    name=mariadb
+    name={{ item }}
     state=present
-- name: Install MariaDB Server
-  yum:
-    name=mariadb-server
-    state=present
+  with_items:
+    - mariadb
+    - mariadb-server
+    - MySQL-python
 - name: Enable MariaDB
   service:
     name=mariadb
