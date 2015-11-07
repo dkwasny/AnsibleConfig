@@ -30,7 +30,9 @@ These files are just too big to be reasonably stored in a GitHub repo, and can b
 
 Run Ansible (from the host machine)
 -----------------------
-1. The host machine will need to have a working DNS/hosts file that points to your VMs.
+1. The host machine will need to have a working DNS/hosts file that points to your VMs.<br/>
+You can use the generated hosts file on any of the VMs as a starting point.
+
 1. Copy your SSH key to the vagrant user on all VMs.
 
         # This is just an example command
@@ -42,9 +44,9 @@ Run Ansible (from the host machine)
 
 Run Ansible (from one of the VMs)
 ---------------------
-1. Vagrant SSH into the VM you wish to run Ansible from and clone this repo.
+1. Vagrant SSH into the primary vm and clone this repo.
 
-        vagrant ssh <machine> 
+        vagrant ssh
 
 1. Generate a SSH key for the vagrant user.
 
