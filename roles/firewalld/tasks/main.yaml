@@ -12,21 +12,17 @@
     path=/etc/firewalld/zones/public.xml
     state=absent
   notify: restart firewalld
-- name: Setup local zone
+- name: Setup zones
   copy:
     owner=root
     group=root
     mode=644
-    src=local.xml
-    dest=/etc/firewalld/zones/local.xml
-  notify: restart firewalld
-- name: Setup vboxnat zone
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=vboxnat.xml
-    dest=/etc/firewalld/zones/vboxnat.xml
+    src={{ item }}
+    dest=/etc/firewalld/zones/{{ item }}
+  with_items:
+    - local.xml
+    - virtualboxnat.xml
+    - vagrantlibvirt.xml
   notify: restart firewalld
 - name: Enable firewalld
   service:

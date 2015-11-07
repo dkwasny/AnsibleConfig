@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zone target="ACCEPT">
-  <short>VBoxNat</short>
+  <short>VirtualBoxNat</short>
   <description>Allows all traffic within the default VirtalBox NAT IP range.</description>
   <source address="10.0.2.0/24" />
 </zone>

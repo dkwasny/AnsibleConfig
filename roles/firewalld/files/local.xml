@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zone target="ACCEPT">
-  <short>Local</short>
-  <description>A simple rule that allows all internal 192.168.32.0/24 traffic.</description>
+  <short>local</short>
+  <description>Opens the main private network.</description>
   <source address="192.168.32.0/24" />
 </zone>

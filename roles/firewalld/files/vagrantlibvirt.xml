@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <short>VagrantLibvirt</short>
+  <description>Allows all traffic for vagrant-libvirt's management network.</description>
+  <source address="192.168.121.0/24" />
+</zone>
