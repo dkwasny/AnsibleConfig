@@ -46,12 +46,6 @@ vm_name_prefix = "vm-grid-"
 # EX2: vm-grid-2 will have a final ip of 192.168.32.12.
 private_ip_prefix = "192.168.32"
 
-# The libvirt storage pool for the created VM images.
-# The storage pool must be created outside of Vagrant.
-# I use a custom pool to write to a separate hard drive.
-# Change to "default" if you do not want to create your own storage pool.
-libvirt_storage_pool = "ansible-config"
-
 Vagrant.configure(2) do |config|
 	# Base VM setup
 	config.vm.box = "centos/7"
@@ -60,7 +54,6 @@ Vagrant.configure(2) do |config|
 		vb.cpus = vm_cpus
 	end
 	config.vm.provider :libvirt do |lv|
-		lv.storage_pool_name = libvirt_storage_pool
 		lv.cpus = vm_cpus
 	end
 
