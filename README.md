@@ -16,8 +16,8 @@ If you want to change VM names or use a different number of VMs, then you will n
 
 Setup VMs via Vagrant
 ---------------------
-    vagrant up --provider virtualbox
-Only the Virtualbox provider will get the correct memory and CPU VM settings.
+    vagrant up --provider [virtualbox | libvirt]
+Both the virtualbox and [libvirt](https://github.com/pradels/vagrant-libvirt) providers are supported.
 
 **The [Vagrantfile](Vagrantfile) is configured for hosts with 32GB memory.**
 You may need to make local modifications to the Vagrant file for your system.
