@@ -11,7 +11,7 @@
 # These settings are intended for host machines with 32GB memory.
 # This should leave 4GB free for the host OS.
 primary_vm_memory = "8500"
-vm_memory = "6500"
+secondary_vm_memory = "6500"
 
 # How many CPUs to give each VM.
 vm_cpus = "2"
@@ -40,27 +40,39 @@ vm_name_prefix = "vm-grid-"
 # The three byte IP subnet that every VM will use.
 # Every VM will have an ip of "{private_ip_prefix}.1{id}".
 #
-# EX1: vm-grid-1 with a private_ip_prefix of 192.168.122
-# will have a final ip of 192.168.122.11
+# EX1: vm-grid-1 with a private_ip_prefix of 192.168.32
+# will have a final ip of 192.168.32.11
 #
-# EX2: vm-grid-2 will have a final ip of 192.168.122.12.
-private_ip_prefix = "192.168.122"
+# EX2: vm-grid-2 will have a final ip of 192.168.32.12.
+private_ip_prefix = "192.168.32"
+
+# The libvirt storage pool for the created VM images.
+# The storage pool must be created outside of Vagrant.
+# I use a custom pool to write to a separate hard drive.
+# Change to "default" if you do not want to create your own storage pool.
+libvirt_storage_pool = "ansible-config"
 
 Vagrant.configure(2) do |config|
 	# Base VM setup
-	config.vm.box = "chef/centos-7.0"
-	config.vm.provider "virtualbox" do |vb|
+	config.vm.box = "centos/7"
+
+	config.vm.provider :virtualbox do |vb|
 		vb.cpus = vm_cpus
 	end
+	config.vm.provider :libvirt do |lv|
+		lv.storage_pool_name = libvirt_storage_pool
+		lv.cpus = vm_cpus
+	end
 
-	# Disable the shared folder
+	# Disable any default synced folders
 	config.vm.synced_folder ".", "/vagrant", disabled: true
+	config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
 
 	# Provision the /etc/hosts file for all VMs
 	vm_ids.each do |i|
 		vm_name = "#{vm_name_prefix}#{i}"
 		ip_address = "#{private_ip_prefix}.1#{i}"
-		config.vm.provision "shell", inline: "echo '#{ip_address}	#{vm_name}' >> /etc/hosts"
+		config.vm.provision :shell, inline: "echo '#{ip_address}	#{vm_name}' >> /etc/hosts"
 	end
 
 	# The first node becomes the primary node
@@ -70,29 +82,32 @@ Vagrant.configure(2) do |config|
 		vm_name = "#{vm_name_prefix}#{i}"
 		ip_address = "#{private_ip_prefix}.1#{i}"
 		config.vm.define vm_name, primary: is_primary do |node|
-			node.vm.network "private_network", ip: ip_address
+			node.vm.network :private_network, ip: ip_address
 			node.vm.hostname = vm_name
 			
 			# Explicitly remove the 127.0.0.1 -> hostname entry in /etc/hosts.
 			# Leaving this causes daemons to listen on 127.0.0.1 instead
 			# of the private network defined earlier.
-			node.vm.provision "shell", inline: "
+			node.vm.provision :shell, inline: "
 				sed -i 's/127\.0\.0\.1[[:space:]]*#{vm_name}/127.0.0.1 /' /etc/hosts
 			"
 			
 			# Primary node specific settings
 			if is_primary
-				node.vm.provision "shell", inline: "
+				node.vm.provision :shell, inline: "
 					yum -y install deltarpm git epel-release;
 					yum -y install ansible;
 				"
-				node.vm.provider "virtualbox" do |vb|
-					vb.memory = primary_vm_memory
-				end
+				vm_memory = primary_vm_memory
 			else
-				node.vm.provider "virtualbox" do |vb|
-					vb.memory = vm_memory
-				end
+				vm_memory = secondary_vm_memory
+			end
+
+			node.vm.provider :virtualbox do |vb|
+				vb.memory = vm_memory
+			end
+			node.vm.provider :libvirt do |lv|
+				lv.memory = vm_memory
 			end
 		end
 		first_node = false

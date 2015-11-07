@@ -7,7 +7,7 @@ Ansible seems to be geared toward this "daemon-less" and "on-demand" model.
 Ansible's use of SSH instead of a custom daemon also simplifies VM setup.
 
 Like [PuppetConfig](https://github.com/dkwasny/PuppetConfig), this repo is inteded to target RHEL/Centos 7 guest VMs.
-To make life easier, all VMs will open up all 192.168.122.0/24 traffic.
+To make life easier, all VMs will open up all 192.168.32.0/24 traffic.
 
 [Vagrant](https://www.vagrantup.com/) can be used to quickly get you some VMs.
 The playbook expects a working DNS/hosts file, which [Vagrantfile](Vagrantfile) will setup for you.

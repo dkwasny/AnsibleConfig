@@ -3,8 +3,8 @@ Notes For Manual VM Setup
 
 Network Setup
 -------------
-* For the sake of consistency, use a local network of 192.168.122.0/24.
-* Ensure the gateway is 192.168.122.1.
+* For the sake of consistency, use a local network of 192.168.32.0/24.
+* Ensure the gateway is 192.168.32.1.
 
 Network Setup (libvirt)
 -----------------------
@@ -32,10 +32,10 @@ VM Configuration
 1. Change /etc/sysconfig/network-scripts/ifcfg-eth0
 	* Set BOOTPROTO=none
 	* Set ONBOOT=yes
-	* Add IPADDR=192.168.122.1[number-of-vm]
+	* Add IPADDR=192.168.32.1[number-of-vm]
 	* Add NETMASK=255.255.255.0
-	* Add GATEWAY=192.168.122.1 (needed for libvirt)
-	* Add DNS1=192.168.122.1 (needed for libvirt)
+	* Add GATEWAY=192.168.32.1 (needed for libvirt)
+	* Add DNS1=192.168.32.1 (needed for libvirt)
 1. Restart the network
 	* systemctl restart network
 1. Update all packages
