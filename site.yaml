@@ -80,3 +80,9 @@
   sudo: yes
   roles:
     - sqoop
+
+- hosts: flume
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - flume

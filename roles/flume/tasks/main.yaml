@@ -1,0 +1,19 @@
+---
+- name: Copy Flume RPM
+  copy:
+    owner=root
+    group=root
+    mode=600
+    src=flume-1.6.0-1.el7.centos.noarch.rpm
+    dest=/tmp/flume-1.6.0-1.el7.centos.noarch.rpm
+- name: Install Flume
+  yum:
+    name=/tmp/flume-1.6.0-1.el7.centos.noarch.rpm
+    state=present
+- name: Setup PATH
+  copy:
+    owner=root
+    group=root
+    mode=644
+    src=flume.sh
+    dest=/etc/profile.d/flume.sh

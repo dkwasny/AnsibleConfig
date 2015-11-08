@@ -69,3 +69,7 @@ vm-grid-1
 # (single) Serves as the MariaDB host.
 [mariadb]
 vm-grid-1
+
+# (multiple) Has Flume installed.
+[flume]
+vm-grid-[1:4]
