@@ -10,3 +10,4 @@
     - rpm-build
     - rpmdevtools
     - maven
+    - telnet
