@@ -1,0 +1,7 @@
+[bigtop]
+name=Bigtop
+enabled=1
+gpgcheck=1
+type=NONE
+baseurl=http://bigtop-repos.s3.amazonaws.com/releases/1.0.0/centos/7/x86_64
+gpgkey=https://dist.apache.org/repos/dist/release/bigtop/KEYS

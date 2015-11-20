@@ -1,0 +1,8 @@
+---
+- name: Install the BigTop Yum repository
+  copy:
+    owner: root
+    group: root
+    mode: 644
+    src: bigtop.repo
+    dest: /etc/yum.repos.d/bigtop.repo
