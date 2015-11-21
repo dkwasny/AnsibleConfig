@@ -7,14 +7,14 @@
   copy:
     owner: root
     group: root
-    mode: 644
+    mode: "644"
     src: config/
     dest: /etc/hadoop/conf
 - name: Setup templated Hadoop config files
   template:
     owner: root
     group: root
-    mode: 644
+    mode: "644"
     src: "{{ item }}.j2"
     dest: /etc/hadoop/conf/{{ item }}
   with_items:

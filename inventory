@@ -35,8 +35,9 @@ vm-grid-[1:2]
 # Each machine must declare a variable named "myid" that contains a unique
 # integer for that machine.
 # EX. "server myid=1"
-#[zookeeper]
-#vm-grid-2 myid=1
+[zookeeper]
+vm-grid-1 myid=1
+vm-grid-2 myid=2
 #vm-grid-3 myid=2
 #vm-grid-4 myid=3
 

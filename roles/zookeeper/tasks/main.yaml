@@ -1,47 +1,26 @@
 ---
-- name: Copy Zookeeper RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=zookeeper-3.4.6-1.fc21.noarch.rpm
-    dest=/tmp/zookeeper-3.4.6-1.fc21.noarch.rpm
 - name: Install Zookeeper
   yum:
-    name=/tmp/zookeeper-3.4.6-1.fc21.noarch.rpm
-    state=present
-- name: Create /var/opt/zookeeper
-  file:
-    name=/var/opt/zookeeper
-    owner=zookeeper
-    group=zookeeper
-    mode=700
-    state=directory
+    name: zookeeper,zookeeper-server
+    state: present
 - name: Setup myid
   template:
-    owner=zookeeper
-    group=zookeeper
-    mode=600
-    src=myid.j2
-    dest=/var/opt/zookeeper/myid
-- name: Create /opt/zookeeper/conf
-  file:
-    name=/opt/zookeeper/conf
-    owner=root
-    group=root
-    mode=755
-    state=directory
+    owner: zookeeper
+    group: zookeeper
+    mode: "600"
+    src: myid.j2
+    dest: /var/lib/zookeeper/myid
 - name: Setup zoo.cfg
   template:
-    owner=root
-    group=root
-    mode=644
-    src=zoo.cfg.j2
-    dest=/opt/zookeeper/conf/zoo.cfg
+    owner: root
+    group: root
+    mode: "644"
+    src: zoo.cfg.j2
+    dest: /etc/zookeeper/conf/zoo.cfg
 - name: Setup zkEnv.sh
   copy:
-    owner=root
-    group=root
-    mode=755
-    src=zkEnv.sh
-    dest=/opt/zookeeper/bin/zkEnv.sh
+    owner: root
+    group: root
+    mode: "755"
+    src: zkEnv.sh
+    dest: /usr/lib/zookeeper/bin/zkEnv.sh
