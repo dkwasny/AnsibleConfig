@@ -2,80 +2,83 @@
 # The password is "password"
 - name: Create admin user
   user:
-    name=admin
-    state=present
-    createhome=yes
-    password=$1$R9cfKHQC$xZecj706CMASpDNPwDkMY.
+    name: admin
+    state: present
+    createhome: yes
+    password: $1$R9cfKHQC$xZecj706CMASpDNPwDkMY.
 - name: Setup sudo access for user
   copy:
-    owner=root
-    group=root
-    mode=440
-    src=sudoers_admin
-    dest=/etc/sudoers.d/admin
+    owner: root
+    group: root
+    mode: "440"
+    src: sudoers_admin
+    dest: /etc/sudoers.d/admin
 - name: Setup .ssh directory
   file:
-    path=/home/admin/.ssh
-    owner=admin
-    group=admin
-    mode=700
-    state=directory
+    path: /home/admin/.ssh
+    owner: admin
+    group: admin
+    mode: "700"
+    state: directory
 - name: Setup .ssh/authorized_keys file
   copy:
-    owner=admin
-    group=admin
-    mode=600
-    src=home/.ssh/authorized_keys
-    dest=/home/admin/.ssh/authorized_keys
+    owner: admin
+    group: admin
+    mode: "600"
+    src: home/.ssh/authorized_keys
+    dest: /home/admin/.ssh/authorized_keys
 - name: Setup .ssh/id_rsa file
   copy:
-    owner=admin
-    group=admin
-    mode=600
-    src=home/.ssh/id_rsa
-    dest=/home/admin/.ssh/id_rsa
+    owner: admin
+    group: admin
+    mode: "600"
+    src: home/.ssh/id_rsa
+    dest: /home/admin/.ssh/id_rsa
 - name: Setup .ssh/id_rsa.pub file
   copy:
-    owner=admin
-    group=admin
-    mode=644
-    src=home/.ssh/id_rsa.pub
-    dest=/home/admin/.ssh/id_rsa.pub
+    owner: admin
+    group: admin
+    mode: "644"
+    src: home/.ssh/id_rsa.pub
+    dest: /home/admin/.ssh/id_rsa.pub
 - name: Setup .tmux.conf file
   copy:
-    owner=admin
-    group=admin
-    mode=664
-    src=home/.tmux.conf
-    dest=/home/admin/.tmux.conf
+    owner: admin
+    group: admin
+    mode: "664"
+    src: home/.tmux.conf
+    dest: /home/admin/.tmux.conf
 - name: Setup .tmux.conf file
   copy:
-    owner=admin
-    group=admin
-    mode=664
-    src=home/.tmux.conf
-    dest=/home/admin/.tmux.conf
-- name: Setup hdfs-format.sh file
+    owner: admin
+    group: admin
+    mode: "664"
+    src: home/.tmux.conf
+    dest: /home/admin/.tmux.conf
+- name: Setup misc admin scripts
   copy:
-    owner=admin
-    group=admin
-    mode=700
-    src=home/hdfs-format.sh
-    dest=/home/admin/hdfs-format.sh
+    owner: admin
+    group: admin
+    mode: "700"
+    src: home/{{ item }}
+    dest: /home/admin/{{ item }}
+  with_items:
+    - hdfs-format.sh
+    - hdfs-init.sh
 - name: Setup daemons directory
   file:
-    path=/home/admin/daemons
-    owner=admin
-    group=admin
-    mode=700
-    state=directory
+    path: /home/admin/daemons
+    owner: admin
+    group: admin
+    mode: "700"
+    state: directory
 - name: Setup daemon scripts
   template:
-    owner=admin
-    group=admin
-    mode=700
-    src={{ item }}.j2
-    dest=/home/admin/daemons/{{ item }}
+    owner: admin
+    group: admin
+    mode: "700"
+    src: {{ item }}.j2
+    dest: /home/admin/daemons/{{ item }}
   with_items:
     - hdfs-start.sh
     - hdfs-stop.sh
@@ -91,8 +94,8 @@
     - hive-stop.sh
 - name: Setup stack scripts
   copy:
-    owner=admin
-    group=admin
-    mode=700
-    src=home/stacks
-    dest=/home/admin
+    owner: admin
+    group: admin
+    mode: "700"
+    src: home/stacks
+    dest: /home/admin
