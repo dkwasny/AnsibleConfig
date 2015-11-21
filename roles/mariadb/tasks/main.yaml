@@ -1,35 +1,35 @@
 ---
 - name: Install MariaDB Packages
   yum:
-    name={{ item }}
-    state=present
+    name: "{{ item }}"
+    state: present
   with_items:
     - mariadb
     - mariadb-server
     - MySQL-python
 - name: Enable MariaDB
   service:
-    name=mariadb
-    enabled=yes
-    state=started
+    name: mariadb
+    enabled: yes
+    state: started
 # TODO: Automate mysql_secure_installation instead
 - name: Delete anonymous users
   mysql_user:
-    name=
-    host={{ item }}
-    login_user=root
-    login_password=
-    state=absent
+    name: ""
+    host: "{{ item }}"
+    login_user: root
+    login_password: ""
+    state: absent
   with_items:
     - localhost
     - "{{ inventory_hostname }}"
 - name: Allow root login from all servers
   mysql_user:
-    name=root
-    host=%
-    password=
-    login_host={{ mariadb_server }}
-    login_user=root
-    login_password=
-    priv=*.*:ALL
-    state=present
+    name: root
+    host: "%"
+    password: ""
+    login_host: "{{ mariadb_server }}"
+    login_user: root
+    login_password: ""
+    priv: "*.*:ALL"
+    state: present

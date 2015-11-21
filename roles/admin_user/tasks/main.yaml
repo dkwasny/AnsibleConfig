@@ -77,7 +77,7 @@
     owner: admin
     group: admin
     mode: "700"
-    src: {{ item }}.j2
+    src: "{{ item }}.j2"
     dest: /home/admin/daemons/{{ item }}
   with_items:
     - hdfs-start.sh

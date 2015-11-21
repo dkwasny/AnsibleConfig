@@ -1,12 +1,12 @@
 ---
 - name: Install Java
   yum:
-    name=java-1.7.0-openjdk-devel
-    state=present
+    name: java-1.7.0-openjdk-devel
+    state: present
 - name: Setup JAVA_HOME
   copy:
-    owner=root
-    group=root
-    mode=644
-    src=java.sh
-    dest=/etc/profile.d/java.sh
+    owner: root
+    group: root
+    mode: "644"
+    src: java.sh
+    dest: /etc/profile.d/java.sh

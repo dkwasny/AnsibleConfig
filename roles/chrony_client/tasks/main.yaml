@@ -1,9 +1,9 @@
 ---
 - name: Setup client chrony.conf
   template:
-    owner=root
-    group=root
-    mode=644
-    src=chrony.conf.j2
-    dest=/etc/chrony.conf
+    owner: root
+    group: root
+    mode: "644"
+    src: chrony.conf.j2
+    dest: /etc/chrony.conf
   notify: restart chrony

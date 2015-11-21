@@ -1,24 +1,24 @@
 ---
 - name: Setup base firewalld.conf file
   copy:
-    owner=root
-    group=root
-    mode=600
-    src=firewalld.conf
-    dest=/etc/firewalld/firewalld.conf
+    owner: root
+    group: root
+    mode: "600"
+    src: firewalld.conf
+    dest: /etc/firewalld/firewalld.conf
   notify: restart firewalld
 - name: Delete public zone
   file:
-    path=/etc/firewalld/zones/public.xml
-    state=absent
+    path: /etc/firewalld/zones/public.xml
+    state: absent
   notify: restart firewalld
 - name: Setup zones
   copy:
-    owner=root
-    group=root
-    mode=644
-    src={{ item }}
-    dest=/etc/firewalld/zones/{{ item }}
+    owner: root
+    group: root
+    mode: "644"
+    src: "{{ item }}"
+    dest: /etc/firewalld/zones/{{ item }}
   with_items:
     - local.xml
     - virtualboxnat.xml
@@ -26,6 +26,6 @@
   notify: restart firewalld
 - name: Enable firewalld
   service:
-    name=firewalld
-    state=started
-    enabled=yes
+    name: firewalld
+    state: started
+    enabled: yes

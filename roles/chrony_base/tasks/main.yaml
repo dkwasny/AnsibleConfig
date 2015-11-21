@@ -1,9 +1,9 @@
 ---
 - name: Remove NTP
   yum:
-    name=ntp
-    state=absent
+    name: ntp
+    state: absent
 - name: Install Chrony
   yum:
-    name=chrony
-    state=present
+    name: chrony
+    state: present
