@@ -1,62 +1,25 @@
 ---
-- name: Copy Hadoop RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=hadoop-2.6.0-1.fc21.x86_64.rpm
-    dest=/tmp/hadoop-2.6.0-1.fc21.x86_64.rpm
 - name: Install Hadoop
   yum:
-    name=/tmp/hadoop-2.6.0-1.fc21.x86_64.rpm
-    state=present
+    name: hadoop,hadoop-hdfs,hadoop-hdfs-datanode,hadoop-hdfs-namenode,hadoop-hdfs-secondarynamenode,hadoop-mapreduce,hadoop-yarn,hadoop-mapreduce-historyserver,hadoop-yarn-nodemanager,hadoop-yarn-resourcemanager
+    state: present
 - name: Setup static Hadoop config files
   copy:
-    owner=root
-    group=root
-    mode=644
-    src=config/
-    dest=/opt/hadoop/etc/hadoop
+    owner: root
+    group: root
+    mode: 644
+    src: config/
+    dest: /etc/hadoop/conf
 - name: Setup templated Hadoop config files
   template:
-    owner=root
-    group=root
-    mode=644
-    src={{ item }}.j2
-    dest=/opt/hadoop/etc/hadoop/{{ item }}
+    owner: root
+    group: root
+    mode: 644
+    src: "{{ item }}.j2"
+    dest: /etc/hadoop/conf/{{ item }}
   with_items:
     - core-site.xml
     - hdfs-site.xml
     - slaves
     - yarn-site.xml
     - mapred-site.xml
-- name: Setup HDFS folders
-  file:
-    name={{ item }}
-    owner=hdfs
-    group=hdfs
-    mode=700
-    state=directory
-  with_items:
-    - /var/opt/hdfs
-    - /var/opt/hdfs/name
-    - /var/opt/hdfs/data
-    - /var/opt/hdfs/log
-- name: Setup YARN folders
-  file:
-    name={{ item }}
-    owner=yarn
-    group=yarn
-    mode=700
-    state=directory
-  with_items:
-    - /var/opt/yarn
-    - /var/opt/yarn/nm-local-dir
-    - /var/opt/yarn/log
-- name: Setup PATH
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=hadoop.sh
-    dest=/etc/profile.d/hadoop.sh

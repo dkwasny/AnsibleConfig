@@ -24,12 +24,12 @@ vm-grid-1
 vm-grid-[2:2]
 
 # (single) Serves as HDFS Namenode and YARN ResourceManager.
-#[hadoop_namenode]
-#vm-grid-1
+[hadoop_namenode]
+vm-grid-1
 
 # (multiple) Serves as HDFS Datanode and YARN NodeManager.
-#[hadoop_datanode]
-#vm-grid-[1:4]
+[hadoop_datanode]
+vm-grid-[1:2]
 
 # (multiple) Serves as Zookeeper quorum.
 # Each machine must declare a variable named "myid" that contains a unique
