@@ -1,19 +1,8 @@
 ---
-- name: Copy Solr RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=solr-5.0.0-1.fc21.noarch.rpm
-    dest=/tmp/solr-5.0.0-1.fc21.noarch.rpm
 - name: Install Solr
   yum:
-    name=/tmp/solr-5.0.0-1.fc21.noarch.rpm
-    state=present
-- name: Setup PATH
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=solr.sh
-    dest=/etc/profile.d/solr.sh
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - solr
+    - solr-server

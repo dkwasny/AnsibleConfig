@@ -1,26 +1,5 @@
 ---
-- name: Copy Pig RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=pig-0.14.0-1.fc21.noarch.rpm
-    dest=/tmp/pig-0.14.0-1.fc21.noarch.rpm
 - name: Install Pig
   yum:
-    name=/tmp/pig-0.14.0-1.fc21.noarch.rpm
-    state=present
-- name: Copy pig-env.sh
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=pig-env.sh
-    dest=/opt/pig/conf/pig-env.sh
-- name: Setup PATH
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=pig.sh
-    dest=/etc/profile.d/pig.sh
+    name: pig
+    state: present

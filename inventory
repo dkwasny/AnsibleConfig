@@ -52,25 +52,25 @@ vm-grid-1
 vm-grid-[2:2]
 
 # (multiple) Serves as Solr node.
-#[solr]
-#vm-grid-[1:4]
+[solr]
+vm-grid-[1:2]
 
 # (multiple) Has Pig installed.
-#[pig]
-#vm-grid-1
+[pig]
+vm-grid-1
 
 # (single) Serves as the Hive server.
 [hive]
 vm-grid-1
 
 # (multiple) Has Sqoop installed.
-#[sqoop]
-#vm-grid-1
+[sqoop]
+vm-grid-1
 
 # (single) Serves as the MariaDB host.
 [mariadb]
 vm-grid-1
 
 # (multiple) Has Flume installed.
-#[flume]
-#vm-grid-[1:4]
+[flume]
+vm-grid-[1:2]
