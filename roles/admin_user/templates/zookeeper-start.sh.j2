@@ -2,5 +2,5 @@
 
 {% for node in zookeeper_quorum %}
 echo "Starting zookeeper {{ node }}";
-ssh -t {{ node }} "sudo systemctl start zookeeper";
+ssh -t {{ node }} "sudo systemctl start zookeeper-server";
 {% endfor %}

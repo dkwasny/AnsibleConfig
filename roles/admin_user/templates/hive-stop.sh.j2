@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "Stopping hive server"
-ssh -t {{ hive_server }} "sudo systemctl stop hive-server";
+ssh -t {{ hive_server }} "sudo systemctl stop hive-server2";
 echo "Stopping webhcat"
-ssh -t {{ hive_server }} "sudo systemctl stop hive-webhcat";
+ssh -t {{ hive_server }} "sudo systemctl stop hive-webhcat-server";
 echo "Stopping hcatalog"
-ssh -t {{ hive_server }} "sudo systemctl stop hive-hcatalog";
+ssh -t {{ hive_server }} "sudo systemctl stop hive-hcatalog-server";

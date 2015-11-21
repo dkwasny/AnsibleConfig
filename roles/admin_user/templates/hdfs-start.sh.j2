@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "Starting namenode {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl start hdfs-namenode";
+ssh -t {{ hadoop_namenode }} "sudo systemctl start hadoop-hdfs-namenode";
 echo "Starting secondarynamenode {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl start hdfs-secondarynamenode";
+ssh -t {{ hadoop_namenode }} "sudo systemctl start hadoop-hdfs-secondarynamenode";
 {% for datanode in hadoop_datanodes %}
 echo "Starting datanode {{ datanode }}";
-ssh -t {{ datanode }} "sudo systemctl start hdfs-datanode";
+ssh -t {{ datanode }} "sudo systemctl start hadoop-hdfs-datanode";
 {% endfor %}

@@ -2,9 +2,9 @@
 
 {% for datanode in hadoop_datanodes %}
 echo "Stopping datanode {{ datanode }}";
-ssh -t {{ datanode }} "sudo systemctl stop hdfs-datanode";
+ssh -t {{ datanode }} "sudo systemctl stop hadoop-hdfs-datanode";
 {% endfor %}
 echo "Stopping secondarynamenode {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl stop hdfs-secondarynamenode";
+ssh -t {{ hadoop_namenode }} "sudo systemctl stop hadoop-hdfs-secondarynamenode";
 echo "Stopping namenode {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl stop hdfs-namenode";
+ssh -t {{ hadoop_namenode }} "sudo systemctl stop hadoop-hdfs-namenode";
