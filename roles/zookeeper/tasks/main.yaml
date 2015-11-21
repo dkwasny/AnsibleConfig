@@ -1,8 +1,11 @@
 ---
 - name: Install Zookeeper
   yum:
-    name: zookeeper,zookeeper-server
+    name: "{{ item }}"
     state: present
+  with_items:
+    - zookeeper
+    - zookeeper-server
 - name: Setup myid
   template:
     owner: zookeeper

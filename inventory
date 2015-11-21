@@ -60,8 +60,8 @@ vm-grid-[2:2]
 #vm-grid-1
 
 # (single) Serves as the Hive server.
-#[hive]
-#vm-grid-1
+[hive]
+vm-grid-1
 
 # (multiple) Has Sqoop installed.
 #[sqoop]

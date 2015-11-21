@@ -1,85 +1,50 @@
 ---
 - name: Install mysql/mariadb connector packages
   yum:
-    name={{ item }}
-    state=present
+    name: "{{ item }}"
+    state: present
   with_items:
     - mysql-connector-java
     - MySQL-python
-- name: Copy Hive RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=hive-1.2.0-1.el7.centos.noarch.rpm
-    dest=/tmp/hive-1.2.0-1.el7.centos.noarch.rpm
 - name: Install Hive
   yum:
-    name=/tmp/hive-1.2.0-1.el7.centos.noarch.rpm
-    state=present
-- name: Copy webhcat-log4j.properties
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=webhcat-log4j.properties
-    dest=/opt/hive/hcatalog/etc/webhcat/webhcat-log4j.properties
-- name: Copy hive-env.sh
-  copy:
-    owner=root
-    group=root
-    mode=755
-    src=hive-env.sh
-    dest=/opt/hive/conf/hive-env.sh
-- name: Copy webhcat-env.sh
-  copy:
-    owner=root
-    group=root
-    mode=755
-    src=webhcat-env.sh
-    dest=/opt/hive/hcatalog/etc/webhcat/webhcat-env.sh
-- name: Copy hcat-env.sh
-  copy:
-    owner=root
-    group=root
-    mode=755
-    src=hcat-env.sh
-    dest=/opt/hive/hcatalog/etc/hcatalog/hcat-env.sh
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - hive
+    - hive-server2
+    - hive-hcatalog
+    - hive-hcatalog-server
+    - hive-webhcat
+    - hive-webhcat-server
 - name: Copy hive-site.xml
   template:
-    owner=root
-    group=root
-    mode=644
-    src=hive-site.xml.j2
-    dest=/opt/hive/conf/hive-site.xml
-- name: Setup PATH
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=hive.sh
-    dest=/etc/profile.d/hive.sh
+    owner: root
+    group: root
+    mode: "644"
+    src: hive-site.xml.j2
+    dest: /etc/hive/conf/hive-site.xml
 - name: Create Hive Metastore in database
   mysql_db:
-    name=hive_metastore
-    login_host={{ mariadb_server }}
-    login_user=root
-    login_password=
-    state=present
+    name: hive_metastore
+    login_host: "{{ mariadb_server }}"
+    login_user: root
+    login_password: ""
+    state: present
 - name: Allow the hive user to access the Hive Metastore
   mysql_user:
-    name=hive
-    host=%
-    password=password
-    login_host={{ mariadb_server }}
-    login_user=root
-    login_password=
-    priv=hive_metastore.*:ALL
-    state=present
+    name: hive
+    host: "%"
+    password: password
+    login_host: "{{ mariadb_server }}"
+    login_user: root
+    login_password: ""
+    priv: hive_metastore.*:ALL
+    state: present
 - name: Symlink mysql-connector-java to Hive's lib directory
   file:
-    name=/opt/hive/lib/mysql-connector-java.jar
-    state=link
-    src=/usr/share/java/mysql-connector-java.jar
-    owner=root
-    group=root
+    name: /usr/lib/hive/lib/mysql-connector-java.jar
+    state: link
+    src: /usr/share/java/mysql-connector-java.jar
+    owner: root
+    group: root

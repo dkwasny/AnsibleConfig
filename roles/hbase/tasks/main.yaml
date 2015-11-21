@@ -1,8 +1,12 @@
 ---
 - name: Install HBase
   yum:
-    name: hbase,hbase-master,hbase-regionserver
+    name: "{{ item }}"
     state: present
+  with_items:
+    - hbase
+    - hbase-master
+    - hbase-regionserver
 - name: Copy hbase-env.sh
   copy:
     owner: root

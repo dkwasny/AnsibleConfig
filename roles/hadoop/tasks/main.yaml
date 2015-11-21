@@ -1,8 +1,19 @@
 ---
 - name: Install Hadoop
   yum:
-    name: hadoop,hadoop-hdfs,hadoop-hdfs-datanode,hadoop-hdfs-namenode,hadoop-hdfs-secondarynamenode,hadoop-mapreduce,hadoop-yarn,hadoop-mapreduce-historyserver,hadoop-yarn-nodemanager,hadoop-yarn-resourcemanager
+    name: "{{ item }}"
     state: present
+  with_items:
+    - hadoop
+    - hadoop-hdfs
+    - hadoop-hdfs-datanode
+    - hadoop-hdfs-namenode
+    - hadoop-hdfs-secondarynamenode
+    - hadoop-yarn
+    - hadoop-yarn-nodemanager
+    - hadoop-yarn-resourcemanager
+    - hadoop-mapreduce
+    - hadoop-mapreduce-historyserver
 - name: Setup static Hadoop config files
   copy:
     owner: root
