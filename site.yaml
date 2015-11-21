@@ -7,7 +7,7 @@
     - java
     - firewalld
     - journald
-#    - admin_user
+    - admin_user
     - bigtop
 
 - hosts: development

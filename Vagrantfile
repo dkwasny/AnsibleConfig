@@ -25,7 +25,7 @@ vm_cpus = "2"
 #
 # Do not let this range exceed (1..99) due to the use of
 # these numbers in IP addresses.
-vm_ids = (1..2)
+vm_ids = (1..4)
 
 # The prefix for every created VM.
 # All VMs will use this prefix with the id appended to the end.
