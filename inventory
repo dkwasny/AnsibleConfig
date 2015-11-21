@@ -42,14 +42,14 @@ vm-grid-2 myid=2
 #vm-grid-4 myid=3
 
 # (single) Serves as HBase Master.
-#[hbase_master]
-#vm-grid-1
+[hbase_master]
+vm-grid-1
 
 # (multiple) Serves as HBase RegionServer.
 # Due to a change in HBase 1.0, you must NOT have the same machine in
 # hbase_master and hbase_regionserver.
-#[hbase_regionserver]
-#vm-grid-[2:4]
+[hbase_regionserver]
+vm-grid-[2:2]
 
 # (multiple) Serves as Solr node.
 #[solr]

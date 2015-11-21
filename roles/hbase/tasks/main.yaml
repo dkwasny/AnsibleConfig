@@ -1,50 +1,22 @@
 ---
-- name: Copy HBase RPM
-  copy:
-    owner=root
-    group=root
-    mode=600
-    src=hbase-1.0.0-1.fc21.x86_64.rpm
-    dest=/tmp/hbase-1.0.0-1.fc21.x86_64.rpm
 - name: Install HBase
   yum:
-    name=/tmp/hbase-1.0.0-1.fc21.x86_64.rpm
-    state=present
-- name: Create /opt/hbase/conf
-  file:
-    name=/opt/hbase/conf
-    owner=root
-    group=root
-    mode=755
-    state=directory
+    name: hbase,hbase-master,hbase-regionserver
+    state: present
 - name: Copy hbase-env.sh
   copy:
-    owner=root
-    group=root
-    mode=755
-    src=hbase-env.sh
-    dest=/opt/hbase/conf/hbase-env.sh
+    owner: root
+    group: root
+    mode: "755"
+    src: hbase-env.sh
+    dest: /etc/hbase/conf/hbase-env.sh
 - name: Setup template files
   template:
-    owner=root
-    group=root
-    mode=644
-    src={{ item }}.j2
-    dest=/opt/hbase/conf/{{ item }}
+    owner: root
+    group: root
+    mode: "644"
+    src: "{{ item }}.j2"
+    dest: /etc/hbase/conf/{{ item }}
   with_items:
     - hbase-site.xml
     - regionservers
-- name: Create log directory
-  file:
-    name=/var/opt/hbase/log
-    owner=hbase
-    group=hbase
-    mode=700
-    state=directory
-- name: Setup PATH
-  copy:
-    owner=root
-    group=root
-    mode=644
-    src=hbase.sh
-    dest=/etc/profile.d/hbase.sh
