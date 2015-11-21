@@ -6,3 +6,7 @@
   with_items:
     - flume
     - flume-agent
+- name: Disable Flume
+  service:
+    name: flume-agent
+    enabled: no

@@ -6,3 +6,7 @@
   with_items:
     - solr
     - solr-server
+- name: Disable Solr
+  service:
+    name: solr-server
+    enabled: no

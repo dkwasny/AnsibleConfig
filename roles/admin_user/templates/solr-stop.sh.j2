@@ -2,5 +2,5 @@
 
 {% for solr_node in solr_nodes %}
 echo "Stopping solr {{ solr_node }}";
-ssh -t {{ solr_node }} "sudo systemctl stop solr";
+ssh -t {{ solr_node }} "sudo systemctl stop solr-server";
 {% endfor %}

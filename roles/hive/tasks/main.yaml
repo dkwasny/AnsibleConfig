@@ -17,6 +17,14 @@
     - hive-hcatalog-server
     - hive-webhcat
     - hive-webhcat-server
+- name: Disable Hive
+  service:
+    name: "{{ item }}"
+    enabled: no
+  with_items:
+    - hive-server2
+    - hive-hcatalog-server
+    - hive-webhcat-server
 - name: Copy hive-site.xml
   template:
     owner: root

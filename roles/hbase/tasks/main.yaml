@@ -7,6 +7,13 @@
     - hbase
     - hbase-master
     - hbase-regionserver
+- name: Disable HBase
+  service:
+    name: "{{ item }}"
+    enabled: no
+  with_items:
+    - hbase-master
+    - hbase-regionserver
 - name: Copy hbase-env.sh
   copy:
     owner: root

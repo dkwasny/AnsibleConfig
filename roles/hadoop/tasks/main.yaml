@@ -14,6 +14,17 @@
     - hadoop-yarn-resourcemanager
     - hadoop-mapreduce
     - hadoop-mapreduce-historyserver
+- name: Disable Hadoop
+  service:
+    name: "{{ item }}"
+    enabled: no
+  with_items:
+    - hadoop-hdfs-namenode
+    - hadoop-hdfs-datanode
+    - hadoop-hdfs-secondarynamenode
+    - hadoop-yarn-resourcemanager
+    - hadoop-yarn-nodemanager
+    - hadoop-mapreduce-historyserver
 - name: Setup static Hadoop config files
   copy:
     owner: root
