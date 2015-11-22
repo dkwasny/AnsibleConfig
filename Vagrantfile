@@ -87,10 +87,6 @@ Vagrant.configure(2) do |config|
 			
 			# Primary node specific settings
 			if is_primary
-				node.vm.provision :shell, inline: "
-					yum -y install deltarpm git epel-release;
-					yum -y install ansible;
-				"
 				vm_memory = primary_vm_memory
 			else
 				vm_memory = secondary_vm_memory
