@@ -105,13 +105,14 @@
 		<name>yarn.log-aggregation-enable</name>
 		<value>true</value>
 	</property>
-	
+
 	<!-- Mapreduce (they don't want this here) -->
 	<property>
 		<name>mapreduce.job.queuename</name>
 		<value>kwaz-queue</value>
 	</property>
-	
+
+	<!-- Setup the classpath for YARN applications -->
 	<property>
 		<name>yarn.application.classpath</name>
 		<value>
@@ -122,9 +123,5 @@
 			$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
 		</value>
 	</property>
-	
-	<property>
-		<name>yarn.nodemanager.delete.debug-delay-sec</name>
-		<value>10000000</value>
-	</property>
+
 </configuration>
