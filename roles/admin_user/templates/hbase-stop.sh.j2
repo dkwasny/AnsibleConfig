@@ -2,7 +2,7 @@
 
 {% for regionserver in hbase_regionservers %}
 echo "Stopping regionserver {{ regionserver }}";
-ssh -t {{ regionserver }} "sudo systemctl stop hbase-regionserver";
+ssh -t {{ regionserver }} "sudo service hbase-regionserver stop";
 {% endfor %}
 echo "Stopping master {{ hbase_master }}"
-ssh -t {{ hbase_master }} "sudo systemctl stop hbase-master";
+ssh -t {{ hbase_master }} "sudo service hbase-master stop";

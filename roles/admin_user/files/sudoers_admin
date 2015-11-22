@@ -1,7 +1,7 @@
 admin	ALL=(ALL)	PASSWD: ALL, NOPASSWD: \
-	/usr/bin/systemctl * hadoop-*, \
-	/usr/bin/systemctl * hbase-*, \
-	/usr/bin/systemctl * zookeeper-server, \
-	/usr/bin/systemctl * solr-server, \
-	/usr/bin/systemctl * hive-*, \
-	/usr/bin/systemctl * flume-agent
+	/sbin/service hadoop-* *, \
+	/sbin/service hbase-* *, \
+	/sbin/service zookeeper-server *, \
+	/sbin/service solr-server *, \
+	/sbin/service hive-* *, \
+	/sbin/service flume-agent *

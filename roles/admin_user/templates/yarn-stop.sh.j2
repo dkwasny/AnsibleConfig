@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "Stopping mrhistoryserver {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl stop hadoop-mapreduce-historyserver";
+ssh -t {{ hadoop_namenode }} "sudo service hadoop-mapreduce-historyserver stop";
 {% for datanode in hadoop_datanodes %}
 echo "Stopping nodemanager {{ datanode }}";
-ssh -t {{ datanode }} "sudo systemctl stop hadoop-yarn-nodemanager";
+ssh -t {{ datanode }} "sudo service hadoop-yarn-nodemanager stop";
 {% endfor %}
 echo "Stopping resourcemanager {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl stop hadoop-yarn-resourcemanager";
+ssh -t {{ hadoop_namenode }} "sudo service hadoop-yarn-resourcemanager stop";

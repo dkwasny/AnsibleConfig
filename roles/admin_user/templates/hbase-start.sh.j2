@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "Starting master {{ hbase_master }}"
-ssh -t {{ hbase_master }} "sudo systemctl start hbase-master";
+ssh -t {{ hbase_master }} "sudo service hbase-master start";
 {% for regionserver in hbase_regionservers %}
 echo "Starting regionserver {{ regionserver }}";
-ssh -t {{ regionserver }} "sudo systemctl start hbase-regionserver";
+ssh -t {{ regionserver }} "sudo service hbase-regionserver start";
 {% endfor %}

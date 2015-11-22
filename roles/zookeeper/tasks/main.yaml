@@ -6,6 +6,10 @@
   with_items:
     - zookeeper
     - zookeeper-server
+- name: Disable Zookeeper
+  service:
+    name: zookeeper-server
+    enabled: no
 - name: Setup myid
   template:
     owner: zookeeper

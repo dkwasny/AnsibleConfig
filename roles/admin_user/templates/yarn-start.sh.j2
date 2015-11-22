@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "Starting resourcemanager {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl start hadoop-yarn-resourcemanager";
+ssh -t {{ hadoop_namenode }} "sudo service hadoop-yarn-resourcemanager start";
 {% for datanode in hadoop_datanodes %}
 echo "Starting nodemanager {{ datanode }}";
-ssh -t {{ datanode }} "sudo systemctl start hadoop-yarn-nodemanager";
+ssh -t {{ datanode }} "sudo service hadoop-yarn-nodemanager start";
 {% endfor %}
 echo "Starting mrhistoryserver {{ hadoop_namenode }}"
-ssh -t {{ hadoop_namenode }} "sudo systemctl start hadoop-mapreduce-historyserver";
+ssh -t {{ hadoop_namenode }} "sudo service hadoop-mapreduce-historyserver start";

@@ -13,6 +13,7 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <configuration>
+
 	<!-- Resource Manager -->
 	<property>
 		<name>yarn.resourcemanager.hostname</name>
@@ -109,5 +110,21 @@
 	<property>
 		<name>mapreduce.job.queuename</name>
 		<value>kwaz-queue</value>
+	</property>
+	
+	<property>
+		<name>yarn.application.classpath</name>
+		<value>
+			$HADOOP_CONF_DIR,
+			$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,
+			$HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,
+			$HADOOP_MAPRED_HOME/*,$HADOOP_MAPRED_HOME/lib/*,
+			$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
+		</value>
+	</property>
+	
+	<property>
+		<name>yarn.nodemanager.delete.debug-delay-sec</name>
+		<value>10000000</value>
 	</property>
 </configuration>
