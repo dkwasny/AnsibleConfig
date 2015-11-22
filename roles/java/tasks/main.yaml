@@ -1,7 +1,7 @@
 ---
 - name: Install Java
   yum:
-    name: java-1.8.0-openjdk-devel
+    name: java-1.7.0-openjdk-devel
     state: present
 - name: Setup JAVA_HOME
   copy:
