@@ -38,13 +38,13 @@ vm_ids = (1..4)
 vm_name_prefix = "vm-grid-"
 
 # The three byte IP subnet that every VM will use.
-# Every VM will have an ip of "{private_ip_prefix}.1{id}".
+# Every VM will have an ip of "{private_ip_prefix}{id}".
 #
-# EX1: vm-grid-1 with a private_ip_prefix of 192.168.32
+# EX1: vm-grid-1 with a private_ip_prefix of 192.168.32.1
 # will have a final ip of 192.168.32.11
 #
 # EX2: vm-grid-2 will have a final ip of 192.168.32.12.
-private_ip_prefix = "192.168.32"
+private_ip_prefix = "192.168.32.1"
 
 Vagrant.configure(2) do |config|
 	# Base VM setup
@@ -61,11 +61,10 @@ Vagrant.configure(2) do |config|
 	config.vm.synced_folder ".", "/vagrant", disabled: true
 	config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
 
-	# Provision the /etc/hosts file for all VMs
-	vm_ids.each do |i|
-		vm_name = "#{vm_name_prefix}#{i}"
-		ip_address = "#{private_ip_prefix}.1#{i}"
-		config.vm.provision :shell, inline: "echo '#{ip_address}	#{vm_name}' >> /etc/hosts"
+	# Perform Ansible provisioning
+	config.vm.provision :ansible do |a|
+		a.playbook = "site.yaml"
+		a.inventory_path = "inventory"
 	end
 
 	# The first node becomes the primary node
@@ -73,7 +72,8 @@ Vagrant.configure(2) do |config|
 	vm_ids.each do |i|
 		is_primary = first_node
 		vm_name = "#{vm_name_prefix}#{i}"
-		ip_address = "#{private_ip_prefix}.1#{i}"
+		ip_address = "#{private_ip_prefix}#{i}"
+		config.vm.provision :shell, inline: "echo '#{ip_address}	#{vm_name}' >> /etc/hosts"
 		config.vm.define vm_name, primary: is_primary do |node|
 			node.vm.network :private_network, ip: ip_address
 			node.vm.hostname = vm_name
@@ -100,6 +100,19 @@ Vagrant.configure(2) do |config|
 			end
 		end
 		first_node = false
+	end
+
+	# Utilize vagrant-cachier to limit bandwidth usage
+	# when installing pacakges.
+	# NFS has to be used to allow bidirectional caching.
+	if Vagrant.has_plugin?("vagrant-cachier")
+		config.cache.scope = :box
+		config.cache.synced_folder_opts = {
+			type: :nfs,
+			nfs_udp: false,
+			nfs_version: 3,
+			mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+		}
 	end
 
 end

@@ -5,6 +5,14 @@
 #
 # Groups listed as (multiple) can contain one to many machines.
 
+# Define the IP to ssh to for each host.
+# These IPs must line up with the "{ip-prefix}{vm-id}"
+# IPs defined in the vagrant file.
+vm-grid-1 ansible_ssh_host=192.168.32.11
+vm-grid-2 ansible_ssh_host=192.168.32.12
+vm-grid-3 ansible_ssh_host=192.168.32.13
+vm-grid-4 ansible_ssh_host=192.168.32.14
+
 # (multiple) All machines managed by Ansible.
 [all]
 vm-grid-[1:4]
