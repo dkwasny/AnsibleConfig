@@ -20,7 +20,7 @@ Vagrant-cachier
 ---------------
 I take advantange of [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) to speed up the provisioning process.<br/>
 You must install this plugin to your Vagrant installation and allow NFS traffic between the host machine and VMs to utilize the RPM caching.<br/>
-[Vagrantfile](Vagrantfile) will work just fine without this plugin but will end up re-downloading the same packages for each VM.
+The [Vagrantfile](Vagrantfile) will work just fine without this plugin but will end up re-downloading the same packages for each VM.
 
 Setup VMs via Vagrant
 ---------------------
