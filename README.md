@@ -1,6 +1,6 @@
 AnsibleConfig
 =============
-A reimplementation of [PuppetConfig](https://github.com/dkwasny/PuppetConfig) with [Ansible](http://www.ansible.com/home) instead of Puppet.
+A reimplementation of [PuppetConfig](https://github.com/dkwasny/PuppetConfig) with [Ansible](http://www.ansible.com/home) and [Vagrant](https://www.vagrantup.com/).
 Puppet is a fine technology, but is a little too much for my needs.
 I found myself only using puppet in --no-daemonize mode and never using it as a real persistent daemon.
 Ansible seems to be geared toward this "daemon-less" and "on-demand" model.
@@ -9,8 +9,8 @@ Ansible's use of SSH instead of a custom daemon also simplifies VM setup.
 Like [PuppetConfig](https://github.com/dkwasny/PuppetConfig), this repo is inteded to target RHEL/Centos 7 guest VMs.
 To make life easier, all VMs will open up all 192.168.32.0/24 traffic.
 
-[Vagrant](https://www.vagrantup.com/) can be used to quickly get you some VMs.
-The playbook expects a working DNS/hosts file, which [Vagrantfile](Vagrantfile) will setup for you.
+You will want to setup a hosts file if you plan to use the Hadoop daemon WebUIs from the host machine.
+Take a look at the hosts file on a fully provisioned VM for an idea on what entries you will need.
 
 If you want to change VM names or use a different number of VMs, then you will need to modify the [Vagrantfile](Vagrantfile) and [Ansible's inventory file](inventory) appropriately.
 
@@ -33,8 +33,11 @@ You may need to make local modifications to the Vagrant file for your system.
 Vagrant will perform the Ansible provisioning automatically.<br/>
 Any further changes to the Ansible provisioning after initializing the VMs will require running Ansible directly.
 
-Run Ansible (from the host machine)
------------------------
+Manually Run Ansible
+--------------------
+**Only needed if you want to deploy further changes after the initial Vagrant provisioning**
+
+### From the Host Machine
 1. The host machine will need to have a working DNS/hosts file that points to your VMs.<br/>
 You can use the generated hosts file on any of the VMs as a starting point.
 
@@ -47,8 +50,7 @@ You can use the generated hosts file on any of the VMs as a starting point.
 
         ansible-playbook -i inventory site.yaml
 
-Run Ansible (from one of the VMs)
----------------------
+### From a VM
 1. Vagrant SSH into the primary vm and clone this repo.
 
         vagrant ssh
@@ -62,6 +64,10 @@ Run Ansible (from one of the VMs)
 
         # This is just an example command
         for i in 1 2 3 4; do ssh-copy-id vagrant@vm-grid-$i; done;
+
+1. Install ansible.
+
+        sudo yum install ansible
 
 1. Execute the playbook.
 
