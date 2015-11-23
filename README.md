@@ -36,7 +36,6 @@ Any further changes to the Ansible provisioning after initializing the VMs will 
 Manually Run Ansible
 --------------------
 **Only needed if you want to deploy further changes after the initial Vagrant provisioning**
-
 ### From the Host Machine
 1. The host machine will need to have a working DNS/hosts file that points to your VMs.<br/>
 You can use the generated hosts file on any of the VMs as a starting point.
