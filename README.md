@@ -14,19 +14,22 @@ The playbook expects a working DNS/hosts file, which [Vagrantfile](Vagrantfile) 
 
 If you want to change VM names or use a different number of VMs, then you will need to modify the [Vagrantfile](Vagrantfile) and [Ansible's inventory file](inventory) appropriately.
 
+Vagrant-cachier
+---------------
+I take advantange of [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) to speed up the provisioning process.<br/>
+You must install this plugin to your Vagrant installation and allow NFS traffic between the host machine and VMs to utilize the RPM caching.<br/>
+[Vagrantfile](Vagrantfile) will work just fine without this plugin but will end up re-downloading the same packages for each VM.
+
 Setup VMs via Vagrant
 ---------------------
     vagrant up --provider [virtualbox | libvirt]
 Both the virtualbox and [libvirt](https://github.com/pradels/vagrant-libvirt) providers are supported.
 
-**The [Vagrantfile](Vagrantfile) is configured for hosts with 32GB memory.**
+**The [Vagrantfile](Vagrantfile) is configured for hosts with 32GB memory.**<br/>
 You may need to make local modifications to the Vagrant file for your system.
 
-Retrieve RPM Files
-------------------
-There are files in the repo with a suffix of **.goeshere**.
-This files are markers meant to tell you that the real file "goes here".
-These files are just too big to be reasonably stored in a GitHub repo, and can be retrieved by running [get_rpms.sh](get_rpms.sh) or by manually downloading the links within the script.
+Vagrant will perform the Ansible provisioning automatically.<br/>
+Any further changes to the Ansible provisioning after initializing the VMs will require running Ansible directly.
 
 Run Ansible (from the host machine)
 -----------------------
@@ -62,27 +65,6 @@ Run Ansible (from one of the VMs)
 
         ansible-playbook -i inventory site.yaml
 
-Daemons
------------
-To operate on a daemon, execute **sudo systemctl \<start|stop|status\> \<DAEMON_NAME\>**.
-Because of how I use systemd to manage daemons, most all daemon logs will end up in systemd's journal instead of being separate files in /var/log.
-To read the logs for a particular daemon, execute **sudo journalctl -u \<DAEMON_NAME\>**.
-Here is a list of all installed daemons.
-* hdfs-namenode
-* hdfs-secondarynamenode
-* hdfs-datanode
-* yarn-resourcemanager
-* yarn-nodemanager
-* yarn-mrhistoryserver
-  * This is really for MapReduce, but I'm rolling it up with the other yarn daemons.
-* zookeeper
-* hbase-master
-* hbase-regionserver
-* solr
-* hive-server
-* hive-hcatalog
-* hive-webhcat
-
 Administration Scripts
 ----------
 In the home of the admin user on every node you will find a **daemons** and **stacks** folder.
@@ -90,7 +72,7 @@ These folders will contain startup and shutdown scripts for their respective dom
 The scripts will stop daemons in the opposite order they are started to help prevent issues.
 You should ideally be able to run these scripts from any node within the grid, though you will get less "known_hosts" issues if you stick to one node.
 
-The **daemons** scripts are meant to only turn on a small set of daemons for minimmal functionality.
+The **daemons** scripts are meant to only turn on a small set of daemons for minimal functionality.
 Turning on a single daemon may result in failure (i.e. starting hbase before hdfs).
 
 The **stacks** scripts are meant to turn on a logical grouping of **daemons** scripts that enable a funcitonal grid.
@@ -101,10 +83,3 @@ Here is a list of the stacks I have setup so far.
 * solrcloud: Starts all hdfs, yarn, zookeeper and solr daemons.
 * hive: Starts all hdfs, yarn and Hive daemons.
 * all: Starts all the things!
-
-Custom RPM Files
------------
-I will be creating my own RPMs unless I am able to find one of the latest version.
-You can find the **.spec** and systemd **.service** files for these RPMs in [SpecFiles](https://github.com/dkwasny/SpecFiles).
-The binaries within the provided RPMs may be compiled from source if the released binaries do not fit my needs.
-The custom RPMs SHOULD be usable on their own, but some minor configuration may be needed if you do not run them through systemd.
