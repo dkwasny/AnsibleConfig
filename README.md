@@ -14,6 +14,8 @@ The playbook expects a working DNS/hosts file, which [Vagrantfile](Vagrantfile) 
 
 If you want to change VM names or use a different number of VMs, then you will need to modify the [Vagrantfile](Vagrantfile) and [Ansible's inventory file](inventory) appropriately.
 
+[Apache Bigtop](http://bigtop.apache.org/)'s RPM repository is used for downloading all Hadoop packages.
+
 Vagrant-cachier
 ---------------
 I take advantange of [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) to speed up the provisioning process.<br/>
