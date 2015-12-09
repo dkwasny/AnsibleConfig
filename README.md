@@ -19,7 +19,14 @@ If you want to change VM names or use a different number of VMs, then you will n
 Vagrant-cachier
 ---------------
 I take advantange of [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) to speed up the provisioning process.<br/>
-You must install this plugin to your Vagrant installation and allow NFS traffic between the host machine and VMs to utilize the RPM caching.<br/>
+You must install this plugin to your Vagrant installation and allow NFS traffic between the host machine and VMs to utilize the RPM caching.
+
+I had to open following ports (or firewalld service) on the host for traffic coming from the VMs...
+
+1. 111 (rpc-bind)
+1. 2049 (nfs)
+1. 20048 (mountd)
+
 The [Vagrantfile](Vagrantfile) will work just fine without this plugin but will end up re-downloading the same packages for each VM.
 
 Setup VMs via Vagrant
