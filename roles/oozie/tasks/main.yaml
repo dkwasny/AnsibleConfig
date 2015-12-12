@@ -1,0 +1,48 @@
+---
+- name: Install Oozie
+  yum:
+    name: oozie
+    state: present
+- name: Disable Oozie
+  service:
+    name: oozie
+    enabled: no
+- name: Setup oozie-site.xml
+  template:
+    owner: root
+    group: root
+    mode: "644"
+    src: oozie-site.xml.j2
+    dest: /etc/oozie/conf/oozie-site.xml
+- name: Install ExtJS to Oozie's libext directory
+  unarchive:
+    creates: /usr/lib/oozie/libext/ext-2.2
+    dest: /usr/lib/oozie/libext
+    owner: oozie
+    group: oozie
+    mode: "755"
+    src: ext-2.2.zip
+- name: Symlink mysql-connector-java to Oozie's libserver directory
+  file:
+    name: /usr/lib/oozie/libserver/mysql-connector-java.jar
+    state: link
+    src: /usr/share/java/mysql-connector-java.jar
+    owner: root
+    group: root
+- name: Create Oozie's MariaDB Database
+  mysql_db:
+    name: oozie
+    login_host: "{{ mariadb_server }}"
+    login_user: root
+    login_password: ""
+    state: present
+- name: Allow the Oozie use to access the oozie database
+  mysql_user:
+    name: oozie
+    host: "%"
+    password: password
+    login_host: "{{ mariadb_server }}"
+    login_user: root
+    login_password: ""
+    priv: oozie.*:ALL
+    state: present

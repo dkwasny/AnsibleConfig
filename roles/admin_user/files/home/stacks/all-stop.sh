@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Stopping oozie";
+/home/admin/daemons/oozie-stop.sh;
 echo "Stopping hive";
 /home/admin/daemons/hive-stop.sh;
 echo "Stopping solr";

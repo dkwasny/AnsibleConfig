@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Stopping oozie"
+ssh -t {{ oozie_server }} "sudo service oozie stop";

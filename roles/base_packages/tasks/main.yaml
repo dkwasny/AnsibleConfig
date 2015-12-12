@@ -10,3 +10,5 @@
   with_items:
     - vim-enhanced
     - htop
+    - rxvt-unicode-256color
+    - wget

@@ -87,3 +87,9 @@
   sudo: yes
   roles:
     - flume
+
+- hosts: oozie
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - oozie

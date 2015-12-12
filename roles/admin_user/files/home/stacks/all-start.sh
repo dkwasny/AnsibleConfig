@@ -10,3 +10,5 @@ echo "Starting solr";
 /home/admin/daemons/solr-start.sh;
 echo "Starting hive";
 /home/admin/daemons/hive-start.sh;
+echo "Starting oozie";
+/home/admin/daemons/oozie-start.sh;

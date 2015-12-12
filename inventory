@@ -81,3 +81,7 @@ vm-grid-1
 # (multiple) Has Flume installed.
 [flume]
 vm-grid-[1:4]
+
+# (single) Serves as the Oozie server.
+[oozie]
+vm-grid-1

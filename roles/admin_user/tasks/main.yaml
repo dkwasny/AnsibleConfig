@@ -92,6 +92,8 @@
     - solr-stop.sh
     - hive-start.sh
     - hive-stop.sh
+    - oozie-start.sh
+    - oozie-stop.sh
 - name: Setup stack scripts
   copy:
     owner: admin
