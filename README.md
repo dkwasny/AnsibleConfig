@@ -29,6 +29,11 @@ I had to open following ports (or firewalld service) on the host for traffic com
 
 The [Vagrantfile](Vagrantfile) will work just fine without this plugin but will end up re-downloading the same packages for each VM.
 
+get-external-files.sh
+---------------------
+Before you provision anything, you must run [get-external-files.sh](get-external-files.sh).<br />
+The script will download any external binaries needed for provisioning and put them in the correct place.
+
 Setup VMs via Vagrant
 ---------------------
     vagrant up --provider [virtualbox | libvirt]
