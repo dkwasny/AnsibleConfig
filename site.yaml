@@ -7,7 +7,6 @@
     - java
     - firewalld
     - journald
-    - admin_user
     - bigtop
 
 - hosts: development
@@ -15,6 +14,7 @@
   sudo: yes
   roles:
     - development
+    - admin_user
 
 - hosts: time_server
   remote_user: vagrant
