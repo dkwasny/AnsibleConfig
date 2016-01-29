@@ -10,11 +10,11 @@
 # How much memory (MB) to give each VM.
 # These settings are intended for host machines with 32GB memory.
 # This should leave 4GB free for the host OS.
-primary_vm_memory = "8500"
-secondary_vm_memory = "6500"
+primary_vm_memory = 8500
+secondary_vm_memory = 6500
 
 # How many CPUs to give each VM.
-vm_cpus = "2"
+vm_cpus = 2
 
 # The id suffixes for every created VM.
 # Integers are used to sync up hostnames and ip addresses.

@@ -25,4 +25,15 @@
 		<name>io.compression.codecs</name>
 		<value>org.apache.hadoop.io.compress.GzipCodec</value>
 	</property>
+
+	<!-- Allow the oozie user to impersonate vagrant
+	     when oozie is run on namenode -->
+	<property>
+		<name>hadoop.proxyuser.oozie.hosts</name>
+		<value>{{ hadoop_namenode }}</value>
+	</property>
+	<property>
+		<name>hadoop.proxyuser.oozie.groups</name>
+		<value>vagrant</value>
+	</property>
 </configuration>
