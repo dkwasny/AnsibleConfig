@@ -21,6 +21,9 @@ Vagrant-cachier
 I take advantange of [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) to speed up the provisioning process.<br/>
 You must install this plugin to your Vagrant installation and allow NFS traffic between the host machine and VMs to utilize the RPM caching.
 
+**You must disable parallel provisioning if vagrant-cachier is used.**
+Yum does not like sharing metadata folders with other yum instances.
+
 I had to open following ports (or firewalld service) on the host for traffic coming from the VMs...
 
 1. 111 (rpc-bind)
@@ -36,8 +39,9 @@ The script will download any external binaries needed for provisioning and put t
 
 Setup VMs via Vagrant
 ---------------------
-    vagrant up --provider [virtualbox | libvirt]
-Both the virtualbox and [libvirt](https://github.com/pradels/vagrant-libvirt) providers are supported.
+    vagrant up --provider [virtualbox | libvirt] [--no-parallel]
+Both the virtualbox and [libvirt](https://github.com/pradels/vagrant-libvirt) providers are supported.<br />
+--no-parallel is needed if the vagrant-cachier plugin is used.
 
 **The [Vagrantfile](Vagrantfile) is configured for hosts with 32GB memory.**<br/>
 You may need to make local modifications to the Vagrant file for your system.
