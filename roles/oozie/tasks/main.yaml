@@ -24,7 +24,7 @@
     src: ext-2.2.zip
 - name: Symlink mysql-connector-java to Oozie's libserver directory
   file:
-    name: /usr/lib/oozie/libserver/mysql-connector-java.jar
+    name: /usr/lib/oozie/lib/mysql-connector-java.jar
     state: link
     src: /usr/share/java/mysql-connector-java.jar
     owner: root
