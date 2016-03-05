@@ -25,14 +25,21 @@
     - hadoop-yarn-resourcemanager
     - hadoop-yarn-nodemanager
     - hadoop-mapreduce-historyserver
-- name: Setup static Hadoop config files
+- name: Setup static config files
   copy:
     owner: root
     group: root
     mode: "644"
     src: config/
     dest: /etc/hadoop/conf
-- name: Setup templated Hadoop config files
+- name: Setup default files
+  copy:
+    owner: root
+    group: root
+    mode: "644"
+    src: default/
+    dest: /etc/default
+- name: Setup templated config files
   template:
     owner: root
     group: root

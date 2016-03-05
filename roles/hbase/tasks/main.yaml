@@ -14,14 +14,14 @@
   with_items:
     - hbase-master
     - hbase-regionserver
-- name: Copy hbase-env.sh
+- name: Setup default files
   copy:
     owner: root
     group: root
-    mode: "755"
-    src: hbase-env.sh
-    dest: /etc/hbase/conf/hbase-env.sh
-- name: Setup template files
+    mode: "644"
+    src: default/
+    dest: /etc/default
+- name: Setup templated config files
   template:
     owner: root
     group: root

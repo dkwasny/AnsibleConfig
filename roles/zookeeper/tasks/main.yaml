@@ -10,6 +10,13 @@
   service:
     name: zookeeper-server
     enabled: no
+- name: Setup default files
+  copy:
+    owner: root
+    group: root
+    mode: "644"
+    src: default/
+    dest: /etc/default
 - name: Setup myid
   template:
     owner: zookeeper

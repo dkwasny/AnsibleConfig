@@ -103,6 +103,5 @@ The **stacks** scripts are meant to turn on a logical grouping of **daemons** sc
 Here is a list of the stacks I have setup so far.
 * hadoop: Starts all hdfs and yarn daemons
 * hbase: Starts all hdfs, yarn, zookeeper and hbase daemons
-* solrcloud: Starts all hdfs, yarn, zookeeper and solr daemons.
 * hive: Starts all hdfs, yarn and Hive daemons.
 * all: Starts all the things!

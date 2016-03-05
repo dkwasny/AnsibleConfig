@@ -4,8 +4,6 @@ echo "Stopping oozie";
 /home/admin/daemons/oozie-stop.sh;
 echo "Stopping hive";
 /home/admin/daemons/hive-stop.sh;
-echo "Stopping solr";
-/home/admin/daemons/solr-stop.sh;
 echo "Stopping hbase";
 /home/admin/daemons/hbase-stop.sh;
 echo "Stopping zookeeper";

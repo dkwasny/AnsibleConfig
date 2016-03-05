@@ -8,13 +8,13 @@
     - firewalld
     - journald
     - bigtop
+    - admin_user
 
 - hosts: development
   remote_user: vagrant
   sudo: yes
   roles:
     - development
-    - admin_user
 
 - hosts: time_server
   remote_user: vagrant
@@ -57,12 +57,6 @@
   sudo: yes
   roles:
     - hbase
-
-- hosts: solr
-  remote_user: vagrant
-  sudo: yes
-  roles:
-    - solr
 
 - hosts: pig
   remote_user: vagrant

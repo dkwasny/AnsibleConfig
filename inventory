@@ -58,10 +58,6 @@ vm-grid-1
 [hbase_regionserver]
 vm-grid-[2:4]
 
-# (multiple) Serves as Solr node.
-[solr]
-vm-grid-[1:4]
-
 # (multiple) Has Pig installed.
 [pig]
 vm-grid-1

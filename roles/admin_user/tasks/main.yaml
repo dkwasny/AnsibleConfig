@@ -88,8 +88,6 @@
     - zookeeper-stop.sh
     - hbase-start.sh
     - hbase-stop.sh
-    - solr-start.sh
-    - solr-stop.sh
     - hive-start.sh
     - hive-stop.sh
     - oozie-start.sh

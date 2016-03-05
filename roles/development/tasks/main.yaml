@@ -7,7 +7,5 @@
     - git
     - epel-release
     - tmux
-    - rpm-build
-    - rpmdevtools
     - maven
     - telnet

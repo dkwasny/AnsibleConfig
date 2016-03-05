@@ -2,7 +2,6 @@ admin	ALL=(ALL)	PASSWD: ALL, NOPASSWD: \
 	/sbin/service hadoop-* *, \
 	/sbin/service hbase-* *, \
 	/sbin/service zookeeper-server *, \
-	/sbin/service solr-server *, \
 	/sbin/service hive-* *, \
 	/sbin/service flume-agent *, \
 	/sbin/service oozie *

@@ -12,3 +12,6 @@
     - htop
     - rxvt-unicode-256color
     - wget
+    - sysstat
+    - tcpdump
+    - unzip

@@ -7,6 +7,13 @@
   service:
     name: oozie
     enabled: no
+- name: Setup oozie-env.sh
+  copy:
+    owner: root
+    group: root
+    mode: "644"
+    src: config/oozie-env.sh
+    dest: /etc/oozie/conf/oozie-env.sh
 - name: Setup oozie-site.xml
   template:
     owner: root
